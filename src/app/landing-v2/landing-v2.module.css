@@ -1093,6 +1093,162 @@
   }
 }
 
+/* Hero monitor: a compact desktop-system presentation for phone and tablet screens. */
+@media (max-width: 768px) {
+  .heroVisual {
+    min-height: 0;
+    height: clamp(270px, 78vw, 450px);
+  }
+
+  .heroMonitor {
+    inset: auto 9px 10px;
+    width: auto;
+    height: auto;
+    aspect-ratio: 1.55 / 1;
+    grid-template-rows: minmax(0, 1fr) 9px;
+    filter: drop-shadow(0 16px 19px rgba(0, 0, 0, .3));
+  }
+
+  .monitorFrame { padding: 4px 4px 0; }
+  .monitorScreenBezel { border-radius: 6px 6px 3px 3px; }
+  .monitorLowerEdge { height: 9px; }
+  .monitorLowerEdge span { bottom: 3px; width: 22px; }
+
+  .systemDemo.compactLandscape {
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 34px minmax(0, 1fr);
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .compactLandscape .sidebar {
+    grid-row: 1;
+    display: block;
+    height: 34px;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+
+  .compactLandscape .systemNav {
+    height: 34px;
+    padding: 0 4px;
+    gap: 2px;
+    align-items: stretch;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    touch-action: pan-x;
+  }
+
+  .compactLandscape .systemNav button {
+    min-height: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border-radius: 3px;
+    font-size: 9px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .compactLandscape .workspace {
+    grid-row: 2;
+    height: 100%;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: 24px minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .compactLandscape .workspaceTop {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 8px;
+  }
+
+  .compactLandscape .workspaceTop > span:last-child { display: inline; font-size: 7px; }
+  .compactLandscape .breadcrumb b { margin: 0 4px; }
+
+  .compactLandscape .workspaceContent {
+    min-height: 0;
+    height: 100%;
+    padding: 6px;
+    overflow: hidden;
+  }
+
+  .compactDemo {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(92px, .75fr);
+    gap: 6px;
+  }
+
+  .compactPrimaryPanel,
+  .compactActionPanel {
+    min-width: 0;
+    padding: 7px 8px;
+    border: 1px solid var(--v2-border);
+    background: rgba(250, 248, 243, .72);
+  }
+
+  .compactPrimaryPanel {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 4px;
+  }
+
+  .compactActionPanel {
+    display: grid;
+    align-content: start;
+    gap: 5px;
+    background: #ece8df;
+  }
+
+  .compactDemo small {
+    color: var(--v2-accent);
+    font-family: var(--font-ibm-plex-mono, monospace);
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .055em;
+    line-height: 1.2;
+  }
+
+  .compactPrimaryPanel h2 {
+    margin: 0;
+    font-size: clamp(12px, 3.5vw, 15px);
+    line-height: 1.04;
+    letter-spacing: -.045em;
+  }
+
+  .compactPrimaryPanel > div {
+    align-self: end;
+    display: grid;
+    gap: 3px;
+    padding-top: 5px;
+    border-top: 1px solid var(--v2-border);
+  }
+
+  .compactDemo b {
+    font-size: clamp(9px, 2.65vw, 11px);
+    line-height: 1.18;
+    letter-spacing: -.02em;
+  }
+
+  .compactDemo span {
+    color: var(--v2-muted);
+    font-size: clamp(7.5px, 2.2vw, 9px);
+    line-height: 1.25;
+  }
+
+  .compactActionPanel span {
+    padding-top: 4px;
+    border-top: 1px solid var(--v2-border);
+  }
+}
+
 /* --- Block 03 v3: contextual assembly (source-driven / central context composition) --- */
 
 .companyContextSection {
@@ -1759,5 +1915,18 @@
       linear-gradient(180deg, rgba(20, 24, 34, .93) 0%, rgba(20, 24, 34, .82) 100%),
       url("/landing-v2/assets/block-12/cta-operations-night.png");
     background-position: 61% center;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroMonitor .demoWrap {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .hiddenCostSection {
+    padding-top: 62px;
   }
 }

@@ -70,11 +70,10 @@ export function HeroSection() {
         </div>
         <div className={styles.heroVisualFrame} aria-label="Рабочая среда и система OptiMate">
           <div ref={visualRef} className={styles.heroVisual}>
-            <div className={styles.oxideSignal} aria-hidden="true"><span />СИГНАЛ БИЗНЕСА → СИСТЕМНОЕ ДЕЙСТВИЕ</div>
             <div ref={monitorRef} className={styles.heroMonitor}>
               <div className={styles.monitorFrame}>
                 <div className={styles.monitorScreenBezel}>
-                  <div id="system-demo" className={styles.demoWrap}><OptiMateSystemDemo /></div>
+                  <div id="system-demo" className={styles.demoWrap}><OptiMateSystemDemo presentation="compact-landscape" /></div>
                 </div>
                 <div className={styles.monitorLowerEdge} aria-hidden="true"><span /></div>
               </div>

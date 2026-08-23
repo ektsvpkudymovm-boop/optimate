@@ -1,13 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Check, ChevronRight, Database, FileText, Search } from "lucide-react";
 import { demoNavigation, detailFacts, guidedSequence, overviewEvents, type DemoView } from "./system-demo-data";
 import styles from "@/app/landing-v2/landing-v2.module.css";
 
 const labels: Record<DemoView, string> = { overview: "Компания сегодня", communications: "Коммуникации", knowledge: "Корпоративные знания", sales: "Рабочий контекст продаж", processes: "Автоматизация", analytics: "Управленческие выводы" };
 
-export function OptiMateSystemDemo() {
+type Presentation = "standard" | "compact-landscape";
+
+export function OptiMateSystemDemo({ presentation = "standard" }: { presentation?: Presentation }) {
   const [view, setView] = useState<DemoView>("overview");
   const [manual, setManual] = useState(false);
   const hostRef = useRef<HTMLDivElement>(null);
@@ -18,6 +20,19 @@ export function OptiMateSystemDemo() {
     if (byUser) setManual(true);
     setView(next);
   }, []);
+
+  const subscribeToPresentation = useCallback((onStoreChange: () => void) => {
+    if (presentation !== "compact-landscape") return () => {};
+    const media = window.matchMedia("(max-width: 768px)");
+    media.addEventListener("change", onStoreChange);
+    return () => media.removeEventListener("change", onStoreChange);
+  }, [presentation]);
+
+  const getPresentationSnapshot = useCallback(
+    () => presentation === "compact-landscape" && window.matchMedia("(max-width: 768px)").matches,
+    [presentation],
+  );
+  const isCompactLandscape = useSyncExternalStore(subscribeToPresentation, getPresentationSnapshot, () => false);
 
   useEffect(() => {
     const node = hostRef.current;
@@ -45,7 +60,7 @@ export function OptiMateSystemDemo() {
   }, [manual]);
 
   return (
-    <div ref={hostRef} className={styles.systemDemo} aria-label="Интерактивная демонстрация интерфейса OptiMate">
+    <div ref={hostRef} className={`${styles.systemDemo} ${isCompactLandscape ? styles.compactLandscape : ""}`} aria-label="Интерактивная демонстрация интерфейса OptiMate">
       <aside className={styles.sidebar}>
         <div className={styles.systemBrand}><span>O</span><b>OptiMate</b></div>
         <span className={styles.sidebarCaption}>Рабочее пространство</span>
@@ -57,16 +72,44 @@ export function OptiMateSystemDemo() {
       <section className={styles.workspace}>
         <div className={styles.workspaceTop}><span className={styles.breadcrumb}>OptiMate <b>/</b> {labels[view]}</span><span>ОБНОВЛЕНО 10:47</span></div>
         <div className={styles.workspaceContent} key={view}>
-          {view === "overview" && <Overview />}
-          {view === "communications" && <Communications />}
-          {view === "knowledge" && <Knowledge />}
-          {view === "sales" && <Sales />}
-          {view === "processes" && <Processes />}
-          {view === "analytics" && <Analytics />}
+          {isCompactLandscape ? <CompactLandscapeView view={view} /> : <>
+            {view === "overview" && <Overview />}
+            {view === "communications" && <Communications />}
+            {view === "knowledge" && <Knowledge />}
+            {view === "sales" && <Sales />}
+            {view === "processes" && <Processes />}
+            {view === "analytics" && <Analytics />}
+          </>}
         </div>
       </section>
     </div>
   );
+}
+
+const compactViewContent: Record<DemoView, { eyebrow: string; title: string; summary: string; detail: string; actionLabel: string; action: string; status: string }> = {
+  overview: { eyebrow: "ОПЕРАЦИОННАЯ СИСТЕМА", title: "Компания сегодня", summary: "Утренний контекст собран", detail: "Новые коммуникации собраны в один рабочий контекст.", actionLabel: "СОБЫТИЕ · 10:42", action: "Разговор обработан", status: "CRM обновлена · задача создана" },
+  communications: { eyebrow: "КОММУНИКАЦИИ", title: "Запрос на аналог", summary: "Короткий итог звонка", detail: "Нужен совместимый аналог с понятным сроком поставки.", actionLabel: "СЛЕДУЩИЙ ШАГ", action: "Проверить вариант", status: "Сегодня · 13:00" },
+  knowledge: { eyebrow: "КОРПОРАТИВНЫЕ ЗНАНИЯ", title: "Какой аналог предложить?", summary: "Рекомендация собрана", detail: "Каталог, 1С и знания подтверждают совместимый вариант.", actionLabel: "ИСТОЧНИКИ", action: "1С · Каталог", status: "Корпоративные знания" },
+  sales: { eyebrow: "ПРОДАЖИ", title: "Запрос на замену", summary: "Контекст обращения", detail: "Разговор, каталог и задача связаны в одном следующем шаге.", actionLabel: "СЛЕДУЩИЙ ШАГ", action: "Подтвердить замену", status: "Ответственный: менеджер" },
+  processes: { eyebrow: "АВТОМАТИЗАЦИЯ", title: "После разговора", summary: "Процесс запущен", detail: "Summary готов, карточка обращения обновлена.", actionLabel: "СТАТУС", action: "Задача создана", status: "Последний запуск завершён" },
+  analytics: { eyebrow: "УПРАВЛЕНЧЕСКИЕ ВЫВОДЫ", title: "Повторяющийся сигнал", summary: "Запрос на категорию", detail: "Тема повторяется в разговорах и заявках.", actionLabel: "ВОПРОС ДЛЯ ПРОВЕРКИ", action: "Проверить ассортимент", status: "Доказательства собраны" },
+};
+
+function CompactLandscapeView({ view }: { view: DemoView }) {
+  const content = compactViewContent[view];
+
+  return <div className={styles.compactDemo}>
+    <article className={styles.compactPrimaryPanel}>
+      <small>{content.eyebrow}</small>
+      <h2>{content.title}</h2>
+      <div><b>{content.summary}</b><span>{content.detail}</span></div>
+    </article>
+    <aside className={styles.compactActionPanel}>
+      <small>{content.actionLabel}</small>
+      <b>{content.action}</b>
+      <span>{content.status}</span>
+    </aside>
+  </div>;
 }
 
 function Overview() { return <><DemoHeading eyebrow="ОПЕРАЦИОННАЯ СИСТЕМА" title="Компания сегодня" text="Не показатели ради показателей, а события, решения и действия, которые уже произошли в работе." /><div className={styles.context}>✦ <span><b>Утренний контекст собран</b><small>Система обработала новые коммуникации и выделила одно решение для проверки.</small></span></div><div className={styles.overviewGrid}><div className={styles.eventList}><div className={styles.panelTitle}>Интеллектуальные события <em>6</em></div>{overviewEvents.map((event) => <article className={event.selected ? styles.selectedEvent : ""} key={event.time}><time>{event.time}</time><div><b>{event.title}</b><p>{event.description}</p><small>● {event.status}</small></div><ChevronRight size={16} /></article>)}</div><Inspector /></div></> }
