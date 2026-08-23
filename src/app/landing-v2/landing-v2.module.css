@@ -1984,6 +1984,124 @@
   .productStoryChapter [data-story-source], .productStoryChapter [data-story-focus], .productStoryChapter [data-story-action], .productStoryChapter [data-story-phrase] { visibility: visible !important; opacity: 1 !important; transform: none !important; }
 }
 
+/* Readability pass: a persistent identity, one primary statement and one
+   fully readable proof composition per viewport-bound scene. */
+.productIdentity {
+  margin: 0;
+  color: var(--v2-text);
+  font-family: var(--font-geologica, Arial, sans-serif);
+  font-size: clamp(19px, 1.65vw, 25px);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+}
+.productMarketScene .productIdentity { color: #f3f0e9; }
+
+@media (min-width: 1025px) {
+  .productStoryScene { padding: 0 max(32px, calc((100vw - 1240px) / 2)); overflow: hidden; }
+  .productSceneNumber { top: clamp(18px, 3vh, 34px); left: max(32px, calc((100vw - 1240px) / 2)); }
+  .productSceneSafeArea { height: 100%; min-height: 0; padding: clamp(52px, 7vh, 72px) 0 clamp(54px, 7vh, 76px); }
+  .productStoryProgress { right: max(32px, calc((100vw - 1240px) / 2)); bottom: 17px; }
+  .productIdentity { font-size: clamp(19px, 1.55vw, 24px); }
+  .productStoryScene h2 { font-size: clamp(46px, 4vw, 62px); line-height: .98; }
+
+  .productKnowledgeScene .productSceneSafeArea { display: grid; grid-template-columns: minmax(290px, .59fr) minmax(0, 1fr); gap: clamp(30px, 5vw, 76px); align-items: center; }
+  .knowledgeStatement { grid-column: 1; grid-row: 1; align-self: center; max-width: 455px; padding-bottom: 76px; }
+  .knowledgeStatement h2 { margin-top: 14px; }
+  .knowledgeStatement > p:last-child { margin-top: 16px; font-size: 15px; line-height: 1.45; }
+  .knowledgeProduct { grid-column: 2; grid-row: 1; width: 100%; height: min(570px, calc(100svh - 126px)); grid-template-rows: 39% 61%; margin: 0; box-shadow: 0 18px 42px rgba(45, 41, 31, .1); }
+  .knowledgeQuestion { padding: clamp(18px, 2vw, 28px); }
+  .knowledgeQuestion strong { max-width: 520px; margin-top: 13px; font-size: clamp(27px, 2.45vw, 39px); line-height: 1.03; }
+  .knowledgeAnswer { padding: clamp(18px, 2vw, 26px); }
+  .knowledgeAnswer h3 { margin-top: 10px; font-size: clamp(22px, 1.85vw, 29px); }
+  .knowledgeAnswer > p { margin-top: 8px; font-size: 13px; line-height: 1.4; }
+  .knowledgeNextAction { margin-top: 13px; padding-top: 10px; }
+  .knowledgeSourceField { padding: clamp(16px, 1.6vw, 22px); }
+  .knowledgeSourceField > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; margin-top: 10px; }
+  .knowledgeSourceField span { padding-block: 5px; font-size: 10px; }
+  .knowledgeSourceField span::after { width: min(6vw, 76px); }
+  .knowledgeModeBlock { grid-column: 1; grid-row: 1; width: 100%; max-width: 470px; align-self: end; margin: 0; }
+  .knowledgeModeBlock > p { display: none; }
+  .productModeRail { margin-top: 7px; }
+  .productModeRail button { min-height: 34px; padding-inline: 9px; font-size: 11px; }
+
+  .productConversationScene .productSceneSafeArea { display: grid; grid-template-columns: minmax(280px, .78fr) minmax(420px, 1.22fr); grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 11px clamp(32px, 5vw, 72px); align-items: stretch; }
+  .conversationIntro { grid-column: 1; grid-row: 1; max-width: 440px; margin: 0; }
+  .conversationIntro h2 { margin-top: 13px; font-size: clamp(42px, 3.55vw, 56px); }
+  .conversationQuote { grid-column: 1; grid-row: 2; align-self: center; max-width: 470px; margin: 0; font-size: clamp(36px, 3.6vw, 51px); line-height: 1.01; }
+  .conversationFocus { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 100%; max-width: none; margin: 0; }
+  .conversationFocus > div { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .conversationFocus article { min-height: 68px; padding: 10px 12px; }
+  .conversationFocus article b { font-size: 13px; }
+  .conversationActionRail { grid-column: 1 / -1; grid-row: 3; width: 100%; max-width: none; margin: 0; }
+  .conversationActionRail p { min-height: 46px; padding: 0 10px; font-size: 11px; }
+  .conversationCapabilityBlock { grid-column: 1 / -1; grid-row: 4; width: 100%; max-width: none; margin: 0; }
+  .conversationCapabilityBlock > p { display: none; }
+
+  .productMarketScene .productSceneSafeArea { display: grid; grid-template-columns: minmax(280px, .58fr) minmax(460px, 1.12fr); grid-template-rows: auto auto auto; column-gap: clamp(34px, 6vw, 84px); row-gap: 14px; align-content: center; }
+  .marketIntro { grid-column: 1; grid-row: 1 / -1; align-self: center; max-width: 400px; }
+  .marketIntro h2 { margin-top: 14px; font-size: clamp(46px, 4vw, 60px); }
+  .marketIntro > p:last-child { margin-top: 15px; font-size: 15px; line-height: 1.45; }
+  .marketPhrases { grid-column: 2; grid-row: 1; position: static; display: grid; gap: 9px; min-height: 0; max-width: none; margin: 0; padding-bottom: 13px; border-bottom: 1px solid rgba(243, 240, 233, .18); }
+  .marketPhrases::before { display: none; }
+  .marketPhrases p, .marketPhrases p:nth-child(1), .marketPhrases p:nth-child(2), .marketPhrases p:nth-child(3) { position: static; max-width: none; margin: 0; color: #dedbd1; font-size: clamp(18px, 1.85vw, 25px); line-height: 1.08; }
+  .marketPhrases p:nth-child(2) { padding-left: 7%; color: #d0ccc1; }
+  .marketPhrases p:nth-child(3) { padding-left: 14%; color: #bbb6aa; }
+  .marketSignal { grid-column: 2; grid-row: 2; width: 100%; max-width: none; margin: 0; padding-top: 17px; border-top: 1px solid #a14d34; }
+  .marketSignal h3 { margin-top: 9px; font-size: clamp(33px, 3vw, 45px); line-height: .99; }
+  .marketSignal p { margin-top: 8px; font-size: 14px; line-height: 1.4; }
+  .marketModeBlock { grid-column: 2; grid-row: 3; width: 100%; max-width: none; margin: 0; }
+}
+
+@media (min-width: 1025px) and (max-height: 820px) {
+  .productSceneSafeArea { padding-top: 46px; padding-bottom: 51px; }
+  .productStoryScene h2 { font-size: clamp(42px, 3.55vw, 54px); }
+  .knowledgeProduct { height: min(515px, calc(100svh - 98px)); }
+  .knowledgeStatement { padding-bottom: 66px; }
+  .knowledgeQuestion strong { font-size: clamp(25px, 2.25vw, 34px); }
+  .knowledgeAnswer h3 { font-size: 23px; }
+  .knowledgeSourceField > p { font-size: 9px; }
+  .conversationIntro h2 { font-size: clamp(39px, 3.2vw, 48px); }
+  .conversationQuote { font-size: clamp(33px, 3.2vw, 44px); }
+  .conversationFocus article { min-height: 61px; padding: 8px 11px; }
+  .conversationActionRail p { min-height: 42px; font-size: 10px; }
+  .marketIntro h2 { font-size: clamp(42px, 3.5vw, 52px); }
+  .marketPhrases { gap: 7px; }
+  .marketPhrases p, .marketPhrases p:nth-child(1), .marketPhrases p:nth-child(2), .marketPhrases p:nth-child(3) { font-size: clamp(17px, 1.7vw, 22px); }
+  .marketSignal h3 { font-size: clamp(31px, 2.75vw, 40px); }
+}
+
+@media (min-width: 1025px) and (max-height: 740px) {
+  .productSceneSafeArea { padding-top: 39px; padding-bottom: 45px; }
+  .productSceneNumber { top: 13px; }
+  .productStoryScene h2 { font-size: clamp(39px, 3.2vw, 48px); }
+  .knowledgeStatement > p:last-child, .marketIntro > p:last-child { display: none; }
+  .knowledgeProduct { height: min(456px, calc(100svh - 82px)); }
+  .knowledgeQuestion { padding: 15px 20px; }
+  .knowledgeAnswer, .knowledgeSourceField { padding: 15px 18px; }
+  .knowledgeAnswer > p { font-size: 12px; }
+  .knowledgeSourceField > div { margin-top: 5px; }
+  .conversationIntro h2 { font-size: clamp(36px, 2.95vw, 44px); }
+  .conversationQuote { font-size: clamp(30px, 2.9vw, 40px); }
+  .conversationFocus article { min-height: 55px; }
+  .conversationCapabilityBlock .productSelectorLabel, .marketModeBlock .productSelectorLabel, .knowledgeModeBlock .productSelectorLabel { display: none; }
+  .marketIntro h2 { font-size: clamp(39px, 3.1vw, 47px); }
+  .marketSignal h3 { font-size: clamp(29px, 2.55vw, 36px); }
+}
+
+@media (max-width: 768px) {
+  .productSceneSafeArea { display: block; }
+  .productIdentity { font-size: 21px; }
+  .knowledgeStatement h2, .conversationIntro h2, .marketIntro h2 { font-size: clamp(34px, 10vw, 42px); }
+  .knowledgeStatement > p:last-child, .marketIntro > p:last-child { font-size: 16px; line-height: 1.48; }
+  .knowledgeModeBlock > p, .conversationCapabilityBlock > p { display: block; }
+  .marketPhrases { position: static; display: grid; gap: 16px; min-height: 0; margin-top: 34px; padding: 0 0 25px; border-bottom: 1px solid rgba(243, 240, 233, .22); }
+  .marketPhrases::before { display: block; position: static; width: 42px; height: 2px; margin-bottom: 8px; background: #cb6c4a; }
+  .marketPhrases p, .marketPhrases p:nth-child(1), .marketPhrases p:nth-child(2), .marketPhrases p:nth-child(3) { position: static; max-width: none; margin: 0; padding: 0; color: #dedbd1; font-size: clamp(21px, 7vw, 27px); line-height: 1.12; }
+  .marketSignal { margin-top: 25px; padding-top: 20px; }
+  .marketModeBlock { margin-top: 24px; }
+}
+
 /* Brand expression pass: material editorial framing for the four priority sections. */
 .demoWrap {
   padding: clamp(12px, 2.4vw, 28px);

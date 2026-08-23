@@ -132,11 +132,12 @@ function KnowledgeScene() {
   return (
     <article className={join(styles.productStoryScene, styles.productKnowledgeScene)} aria-labelledby="knowledge-title">
       <div className={styles.productSceneNumber}>04 <span>Knowledge</span></div>
-      <div className={styles.knowledgeStatement}>
-        <p className={styles.productSceneKicker}>ИИ-Википедия компании</p>
-        <h2 id="knowledge-title">Сотрудник больше не ищет ответ по системам. Он задаёт вопрос.</h2>
-        <p>Единый интеллектуальный источник знает вашу компанию и помогает сотрудникам работать быстрее.</p>
-      </div>
+      <div className={styles.productSceneSafeArea}>
+        <div className={styles.knowledgeStatement}>
+          <p className={styles.productIdentity}>ИИ-Википедия компании</p>
+          <h2 id="knowledge-title">Сотрудник больше не ищет ответ по системам. Он задаёт вопрос.</h2>
+          <p>Единый интеллектуальный источник знает вашу компанию и помогает сотрудникам работать быстрее.</p>
+        </div>
 
       <div className={styles.knowledgeProduct}>
         <div className={styles.knowledgeQuestion}>
@@ -159,12 +160,13 @@ function KnowledgeScene() {
         </div>
       </div>
 
-      <div className={styles.knowledgeModeBlock}>
-        <div className={styles.productSelectorLabel}>Режим знания</div>
-        <div className={styles.productModeRail} role="tablist" aria-label="Сценарии ИИ-Википедии">
-          {knowledgeModes.map((item) => <button key={item.id} type="button" role="tab" aria-selected={item.id === mode.id} onClick={() => setActiveMode(item.id)}>{item.label}</button>)}
+        <div className={styles.knowledgeModeBlock}>
+          <div className={styles.productSelectorLabel}>Режим знания</div>
+          <div className={styles.productModeRail} role="tablist" aria-label="Сценарии ИИ-Википедии">
+            {knowledgeModes.map((item) => <button key={item.id} type="button" role="tab" aria-selected={item.id === mode.id} onClick={() => setActiveMode(item.id)}>{item.label}</button>)}
+          </div>
+          <p>{mode.copy}</p>
         </div>
-        <p>{mode.copy}</p>
       </div>
     </article>
   );
@@ -177,26 +179,28 @@ function ConversationScene() {
   return (
     <article className={join(styles.productStoryScene, styles.productConversationScene)} aria-labelledby="calls-title">
       <div className={styles.productSceneNumber}>05 <span>Conversation</span></div>
-      <div className={styles.conversationIntro}>
-        <p className={styles.productSceneKicker}>Анализ разговоров</p>
-        <h2 id="calls-title">Из разговора система достаёт то, что важно бизнесу.</h2>
-      </div>
-      <blockquote className={styles.conversationQuote}>«Нужна похожая позиция, но в другом исполнении.»</blockquote>
-      <div className={styles.conversationFocus}>
-        <p>Разговор <span>12:41</span></p>
-        <div>
-          {focus.map(([label, value]) => <article key={label} data-story-focus><span>{label}</span><b>{value}</b></article>)}
+      <div className={styles.productSceneSafeArea}>
+        <div className={styles.conversationIntro}>
+          <p className={styles.productIdentity}>Анализ разговоров</p>
+          <h2 id="calls-title">Из разговора система достаёт то, что важно бизнесу.</h2>
         </div>
-      </div>
-      <div className={styles.conversationActionRail}>
-        {['Саммари готово', 'CRM обновлена', 'Задача создана', 'Рекомендация менеджеру'].map((action) => <p key={action} data-story-action><Check size={14} /> {action}</p>)}
-      </div>
-      <div className={styles.conversationCapabilityBlock}>
-        <div className={styles.productSelectorLabel}>Фокус системы</div>
-        <div className={styles.productModeRail} role="tablist" aria-label="Возможности анализа разговоров">
-          {callCapabilities.map((item, index) => <button key={item.title} type="button" role="tab" aria-selected={index === capability} onClick={() => setCapability(index)}>{item.title}</button>)}
+        <blockquote className={styles.conversationQuote}>«Нужна похожая позиция, но в другом исполнении.»</blockquote>
+        <div className={styles.conversationFocus}>
+          <p>Разговор <span>12:41</span></p>
+          <div>
+            {focus.map(([label, value]) => <article key={label} data-story-focus><span>{label}</span><b>{value}</b></article>)}
+          </div>
         </div>
-        <p>{callCapabilities[capability].copy}</p>
+        <div className={styles.conversationActionRail}>
+          {['Саммари готово', 'CRM обновлена', 'Задача создана', 'Рекомендация менеджеру'].map((action) => <p key={action} data-story-action><Check size={14} /> {action}</p>)}
+        </div>
+        <div className={styles.conversationCapabilityBlock}>
+          <div className={styles.productSelectorLabel}>Фокус системы</div>
+          <div className={styles.productModeRail} role="tablist" aria-label="Возможности анализа разговоров">
+            {callCapabilities.map((item, index) => <button key={item.title} type="button" role="tab" aria-selected={index === capability} onClick={() => setCapability(index)}>{item.title}</button>)}
+          </div>
+          <p>{callCapabilities[capability].copy}</p>
+        </div>
       </div>
     </article>
   );
@@ -210,23 +214,25 @@ function MarketScene() {
   return (
     <article className={join(styles.productStoryScene, styles.productMarketScene)} aria-labelledby="market-title">
       <div className={styles.productSceneNumber}>06 <span>Market intelligence</span></div>
-      <div className={styles.marketIntro}>
-        <p className={styles.productSceneKicker}>Данные о рынке</p>
-        <h2 id="market-title">Клиенты уже говорят, что им нужно.</h2>
-        <p>Множество коммуникаций превращаются в управленческий сигнал.</p>
-      </div>
-      <div className={styles.marketPhrases} aria-label="Повторяющиеся клиентские формулировки">
-        {phrases.map((phrase) => <p key={phrase} data-story-phrase>«{phrase}»</p>)}
-      </div>
-      <div className={styles.marketSignal}>
-        <span>Повторяющийся сигнал</span>
-        <h3>{mode.title}</h3>
-        <p>{mode.copy}</p>
-      </div>
-      <div className={styles.marketModeBlock}>
-        <div className={styles.productSelectorLabel}>Управленческий взгляд</div>
-        <div className={styles.productModeRail} role="tablist" aria-label="Направления анализа рынка">
-          {marketModes.map((item) => <button key={item.id} type="button" role="tab" aria-selected={item.id === mode.id} onClick={() => setSelected(item.id)}>{item.label}</button>)}
+      <div className={styles.productSceneSafeArea}>
+        <div className={styles.marketIntro}>
+          <p className={styles.productIdentity}>Данные о рынке</p>
+          <h2 id="market-title">Клиенты уже говорят, что им нужно.</h2>
+          <p>Множество коммуникаций превращаются в управленческий сигнал.</p>
+        </div>
+        <div className={styles.marketPhrases} aria-label="Повторяющиеся клиентские формулировки">
+          {phrases.map((phrase) => <p key={phrase} data-story-phrase>«{phrase}»</p>)}
+        </div>
+        <div className={styles.marketSignal}>
+          <span>Повторяющийся сигнал</span>
+          <h3>{mode.title}</h3>
+          <p>{mode.copy}</p>
+        </div>
+        <div className={styles.marketModeBlock}>
+          <div className={styles.productSelectorLabel}>Управленческий взгляд</div>
+          <div className={styles.productModeRail} role="tablist" aria-label="Направления анализа рынка">
+            {marketModes.map((item) => <button key={item.id} type="button" role="tab" aria-selected={item.id === mode.id} onClick={() => setSelected(item.id)}>{item.label}</button>)}
+          </div>
         </div>
       </div>
     </article>
