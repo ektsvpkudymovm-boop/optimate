@@ -95,4 +95,6 @@ The in-app browser allowed the desktop passes. Its URL policy blocked the attemp
 
 Branch: `landing-v2-design`.
 
-The requested implementation commit is created after this report is finalized; its SHA is recorded in the task handoff. Push is intentionally not performed because the repository safety policy prohibits `git push` from this environment.
+Implementation commit: `d3984ee4f9b2b859804ef9f2bc08e849d384d093` (`feat(landing-v2): add business system assembly story`).
+
+Push is intentionally not performed because the repository safety policy prohibits `git push` from this environment.
