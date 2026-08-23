@@ -10,7 +10,7 @@ type LossRowProps = {
 
 export function LossRow({ scenario, isSelected, onSelect }: LossRowProps) {
   return (
-    <article className={styles.lossRowWrap}>
+    <article data-loss-row className={styles.lossRowWrap}>
       <button
         type="button"
         className={styles.lossRow}
@@ -19,6 +19,7 @@ export function LossRow({ scenario, isSelected, onSelect }: LossRowProps) {
         aria-expanded={isSelected}
         aria-controls={`hidden-cost-process-${scenario.id}`}
       >
+        <span className={styles.lossRowSignal} aria-hidden="true" />
         <span className={styles.lossRowNumber}>{scenario.number}</span>
         <div className={styles.lossRowText}>
           <p className={styles.lossRowTitle}>{scenario.title}</p>

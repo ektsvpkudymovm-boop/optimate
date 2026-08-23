@@ -646,6 +646,361 @@
   }
 }
 
+/* Landing V2: scroll art direction, Blocks 01–02 only. */
+.landingV2 {
+  --color-bg-dark: #171814;
+  --color-border-dark: #393a33;
+  --color-accent-oxide: #c45f3c;
+  overflow-x: clip;
+}
+
+.hero {
+  width: 100%;
+  height: 214svh;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+.heroStage {
+  position: relative;
+  height: 100svh;
+  min-height: 680px;
+  overflow: hidden;
+  padding: clamp(58px, 8vw, 112px) 0 0;
+  background: var(--v2-bg);
+}
+
+.copy {
+  width: min(calc(100% - 64px), 1240px);
+  margin: 0 auto;
+  max-width: none;
+  transform-origin: left top;
+}
+
+.copy h1 { max-width: 980px; }
+.lead { max-width: 690px; }
+
+.heroVisualFrame {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.heroVisual {
+  position: relative;
+  width: min(94vw, 1376px);
+  height: min(88svh, 792px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(241, 238, 231, .14);
+  border-radius: 26px;
+  background-color: #20211d;
+  background-image:
+    linear-gradient(180deg, rgba(23, 24, 20, .06), rgba(23, 24, 20, .32)),
+    url("/landing-v2/assets/hero/hero-operational-desk.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 34px 92px rgba(28, 25, 19, .22);
+  transform-origin: center center;
+  pointer-events: auto;
+}
+
+.demoWrap {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.systemDemo {
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.oxideSignal {
+  position: absolute;
+  z-index: 3;
+  top: clamp(24px, 3vw, 40px);
+  left: clamp(24px, 3.2vw, 46px);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: #f1eee7;
+  font-family: var(--font-ibm-plex-mono, monospace);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.oxideSignal span {
+  width: clamp(34px, 4vw, 58px);
+  height: 5px;
+  background: var(--v2-accent);
+}
+
+.heroMonitor {
+  position: absolute;
+  inset: auto 0 clamp(42px, 5svh, 54px);
+  width: min(90vw, 1280px, calc(112svh - 77px));
+  height: min(70svh, 700px);
+  margin: auto;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 31px 17px;
+  filter: drop-shadow(0 28px 30px rgba(0, 0, 0, .34));
+  transform-origin: center bottom;
+}
+
+.monitorFrame {
+  min-height: 0;
+  padding: 7px 7px 0;
+  border: 1px solid #12130f;
+  border-radius: 13px 13px 6px 6px;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, .17), transparent 11%, transparent 83%, rgba(255, 255, 255, .06)),
+    linear-gradient(180deg, #30312c, #181914 55%, #10110e);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    inset 0 -1px 0 rgba(0, 0, 0, .64),
+    0 6px 15px rgba(0, 0, 0, .38);
+}
+
+.monitorScreenBezel {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #060705;
+  border-radius: 8px 8px 4px 4px;
+  background: #0b0c09;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+}
+
+.monitorLowerEdge {
+  position: relative;
+  height: 12px;
+  margin: 0 -1px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(180deg, #1c1d18, #0e0f0c);
+}
+
+.monitorLowerEdge span {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(241, 238, 231, .26);
+  transform: translateX(-50%);
+}
+
+.monitorStand {
+  position: relative;
+  width: 80px;
+  justify-self: center;
+  overflow: hidden;
+}
+
+.monitorStand::before,
+.monitorStand span {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.monitorStand::before {
+  top: 0;
+  width: 23px;
+  height: 31px;
+  border-left: 1px solid rgba(255, 255, 255, .12);
+  border-right: 1px solid rgba(0, 0, 0, .8);
+  background: linear-gradient(90deg, #151612, #34352f 46%, #171814);
+}
+
+.monitorStand span {
+  bottom: 0;
+  width: 80px;
+  height: 8px;
+  border-radius: 50% 50% 2px 2px;
+  background: linear-gradient(180deg, #2c2d27, #11120f);
+}
+
+.monitorBase {
+  width: 142px;
+  height: 11px;
+  align-self: end;
+  justify-self: center;
+  border-radius: 50% 50% 4px 4px;
+  background: linear-gradient(180deg, #3a3b34, #12130f 78%);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, .34);
+}
+
+.hiddenCostSection {
+  position: relative;
+  z-index: 2;
+  margin-top: -12svh;
+  padding: clamp(96px, 10vw, 144px) 0 clamp(76px, 8vw, 118px);
+  border-radius: 30px 30px 0 0;
+  background: var(--v2-bg);
+  box-shadow: 0 -24px 48px rgba(32, 33, 29, .06);
+}
+
+.hiddenCostGrid { row-gap: 0; }
+.hiddenCostHeader { grid-column: 2 / span 9; }
+.hiddenCostKicker { color: var(--v2-accent); font-family: var(--font-onest, sans-serif); font-size: 13px; letter-spacing: -.01em; }
+.hiddenCostTitle { max-width: 880px; margin-top: 12px; font-size: clamp(40px, 4.7vw, 60px); }
+.hiddenCostIntro { max-width: 680px; margin-top: 22px; }
+
+.hiddenCostAuditSurface {
+  grid-column: 1 / -1;
+  align-items: start;
+  min-height: 512px;
+  margin-top: clamp(62px, 6vw, 92px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--v2-border);
+  border-radius: 0;
+  background: var(--v2-surface);
+}
+
+.lossRegister { grid-column: 1 / span 8; border-right: 1px solid var(--v2-border); }
+.lossRowWrap { position: relative; }
+.lossRowProcessPanel { display: none; }
+.lossRow {
+  position: relative;
+  grid-template-columns: 66px 1fr;
+  gap: 16px;
+  min-height: 82px;
+  padding: 18px 24px;
+  border-left: 0;
+  transition: color .3s ease, background-color .3s ease;
+}
+.lossRow:hover { background: #f3f0e9; }
+.lossRow[data-selected="true"] { background: #eeebe2; border-left-color: transparent; }
+.lossRowNumber { position: relative; z-index: 1; width: auto; color: #77786f; font-size: 20px; transition: color .3s ease, transform .3s ease; }
+.lossRow[data-selected="true"] .lossRowNumber { color: var(--v2-accent); transform: translateX(8px); }
+.lossRowTitle { font-size: 19px; }
+.lossRowDescription { max-width: 550px; font-size: 14px; }
+.lossRowSignal {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: var(--v2-accent);
+  opacity: 0;
+  transform: scaleY(.24);
+  transform-origin: center;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.lossRow[data-selected="true"] .lossRowSignal { opacity: 1; transform: scaleY(1); }
+
+.hiddenCostProcessPanel {
+  position: sticky;
+  top: 24px;
+  grid-column: 9 / -1;
+  padding: 29px 30px 30px;
+}
+.hiddenCostProcessTitle { margin: 0; color: var(--v2-accent); font-family: var(--font-onest, sans-serif); font-size: 13px; letter-spacing: -.01em; text-transform: none; }
+.hiddenCostProcessContent { margin-top: 22px; }
+.lossProcessContentEnter { animation: hiddenCostProcessIn .34s cubic-bezier(.22, .8, .26, 1); }
+@keyframes hiddenCostProcessIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.lossProcessSequence { gap: 16px; }
+.lossProcessMarker { border-radius: 0; background: #ebe6dc; color: var(--v2-accent); }
+
+.hiddenCostPrinciple {
+  grid-column: 2 / span 10;
+  margin: clamp(62px, 7vw, 100px) 0 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--v2-border);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-geologica, sans-serif);
+  font-size: clamp(25px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: 1.12;
+}
+.hiddenCostPrinciple > span,
+.hiddenCostPrinciple strong { display: inline; }
+.hiddenCostPrinciple em { color: var(--v2-muted); font-style: normal; transition: color .42s ease, box-shadow .42s ease; }
+.hiddenCostPrinciple strong { color: var(--v2-muted); font-weight: 600; transition: color .42s ease .86s; }
+.hiddenCostPrinciple[data-visible="true"] em { color: var(--v2-text); box-shadow: inset 0 -5px 0 rgba(196, 95, 60, .35); }
+.hiddenCostPrinciple[data-visible="true"] em[data-order="2"] { transition-delay: .18s; }
+.hiddenCostPrinciple[data-visible="true"] em[data-order="3"] { transition-delay: .36s; }
+.hiddenCostPrinciple[data-visible="true"] em[data-order="4"] { transition-delay: .54s; }
+.hiddenCostPrinciple[data-visible="true"] strong { color: var(--v2-accent); }
+
+.companyContextSection {
+  position: relative;
+  z-index: 1;
+  background: var(--color-bg-dark);
+  will-change: transform, clip-path;
+}
+
+@media (max-width: 1024px) {
+  .heroVisualFrame { width: auto; }
+  .copy { width: min(calc(100% - 48px), 1240px); }
+  .heroMonitor { width: min(90vw, calc(112svh - 77px)); }
+  .hiddenCostGrid { width: min(calc(100% - 48px), 1240px); }
+  .hiddenCostHeader, .hiddenCostPrinciple { grid-column: 1 / span 10; }
+  .lossRegister { grid-column: 1 / span 7; }
+  .hiddenCostProcessPanel { grid-column: 8 / -1; padding: 24px; }
+}
+
+@media (max-width: 768px) {
+  .landingV2 { overflow-x: clip; }
+  .hero { height: auto; }
+  .heroStage { height: auto; min-height: 0; overflow: visible; padding: 56px 0 0; }
+  .copy { width: min(calc(100% - 40px), 600px); }
+  .copy h1 { font-size: clamp(42px, 12vw, 62px); }
+  .heroVisualFrame { position: static; display: block; width: min(calc(100% - 24px), 680px); height: auto; margin: 42px auto 0; transform: none; }
+  .heroVisual { min-height: 430px; height: 430px; padding: 0; border-radius: 18px; transform: none; }
+  .heroMonitor { bottom: 10px; width: calc(100% - 22px); height: 360px; grid-template-rows: minmax(0, 1fr); }
+  .monitorFrame { padding: 5px 5px 0; border-radius: 10px 10px 5px 5px; }
+  .monitorLowerEdge { height: 9px; }
+  .monitorStand, .monitorBase { display: none; }
+  .demoWrap { height: 100%; width: 100%; }
+  .oxideSignal { top: 25px; left: 22px; right: auto; font-size: 8px; }
+  .oxideSignal span { width: 32px; height: 4px; }
+  .hiddenCostSection { margin-top: 0; padding: 72px 0 68px; border-radius: 0; box-shadow: none; }
+  .hiddenCostGrid { width: min(calc(100% - 40px), 600px); }
+  .hiddenCostHeader, .hiddenCostPrinciple { grid-column: 1 / -1; }
+  .hiddenCostTitle { font-size: clamp(36px, 10vw, 48px); }
+  .hiddenCostAuditSurface { display: block; margin-top: 44px; }
+  .lossRegister { border-right: 0; }
+  .lossRow { grid-template-columns: 48px 1fr; gap: 10px; padding: 16px 14px; }
+  .lossRowTitle { font-size: 17px; }
+  .lossRowDescription { font-size: 13px; }
+  .hiddenCostProcessPanel { display: none; }
+  .lossRowProcessPanel { display: block; }
+  .lossRowProcessPanel[data-visible="true"] { padding-left: 48px; }
+  .hiddenCostPrinciple { margin-top: 54px; font-size: clamp(25px, 7.2vw, 34px); }
+  .companyContextSection { will-change: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .heroStage { height: auto; min-height: 0; overflow: visible; padding-bottom: 0; }
+  .heroVisualFrame { position: static; display: block; width: min(calc(100% - 64px), 1376px); height: min(88svh, 792px); margin: 56px auto 0; transform: none; }
+  .heroVisual { height: 100%; transform: none; }
+  .hiddenCostSection { margin-top: 0; border-radius: 0; }
+  .companyContextSection { clip-path: none !important; transform: none !important; will-change: auto; }
+  .lossProcessContentEnter { animation: none; }
+}
+
 /* Blocks 04–12: each section uses a distinct composition, not a repeated card grid. */
 .v2Container { width: min(calc(100% - 64px), 1240px); margin: 0 auto; }
 .sectionHeader { max-width: 910px; }

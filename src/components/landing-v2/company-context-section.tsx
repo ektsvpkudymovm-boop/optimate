@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   companyContextOutcomes,
   companyContextSources,
@@ -26,6 +28,7 @@ export function CompanyContextSection() {
   const [visibleSourceCount, setVisibleSourceCount] = useState(0);
   const [outcomesVisible, setOutcomesVisible] = useState(false);
   const [conclusionVisible, setConclusionVisible] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const revealTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -128,7 +131,41 @@ export function CompanyContextSection() {
     };
   }, [clearRevealTimers, startReveal]);
 
-  const reducedMotion = isReducedMotion();
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotionPreference = () => setReducedMotion(motion.matches);
+
+    syncMotionPreference();
+    motion.addEventListener("change", syncMotionPreference);
+
+    return () => motion.removeEventListener("change", syncMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(min-width: 769px)").matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const context = gsap.context(() => {
+      gsap.fromTo(section, { xPercent: 34, clipPath: "inset(0 0 0 34%)" }, {
+        xPercent: 0,
+        clipPath: "inset(0 0 0 0%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "top 30%",
+          scrub: 0.7,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, section);
+
+    return () => context.revert();
+  }, []);
+
   const activeSource = companyContextSources.find((source) => source.id === activeSourceId) ??
     companyContextSources[0];
 
