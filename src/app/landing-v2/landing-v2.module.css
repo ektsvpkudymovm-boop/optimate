@@ -2238,3 +2238,326 @@
     padding-top: 62px;
   }
 }
+
+/* Block 07 — a spatial business-system assembly. */
+.architectureSection {
+  position: relative;
+  padding: 0;
+  height: 300svh;
+  overflow: visible;
+  background: #ded9cf;
+}
+
+.architectureStage {
+  position: relative;
+  top: 0;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.architectureSection::after {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 0;
+  width: 1px;
+  height: 10vh;
+  background: var(--v2-accent);
+  content: "";
+}
+
+.architectureContainer {
+  position: relative;
+  height: 100svh;
+}
+
+@media (min-width: 769px) {
+  .architectureStage { position: sticky; }
+}
+
+.architectureIntro {
+  position: absolute;
+  z-index: 3;
+  top: clamp(84px, 12vh, 146px);
+  left: 0;
+  width: min(53%, 650px);
+}
+
+.architectureIntro h2 {
+  max-width: 650px;
+  margin: 14px 0 0;
+  font-family: var(--font-geologica, Arial, sans-serif);
+  font-size: clamp(38px, 4.2vw, 62px);
+  font-weight: 600;
+  letter-spacing: -.056em;
+  line-height: .99;
+  text-wrap: balance;
+}
+
+.architectureIntro > p:last-child {
+  max-width: 500px;
+  margin: 18px 0 0;
+  color: var(--v2-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.architectureWorld {
+  position: absolute;
+  top: 10%;
+  right: -4%;
+  width: min(67vw, 960px);
+  height: 78%;
+  perspective: 1300px;
+  transform-style: preserve-3d;
+  visibility: hidden;
+}
+
+.architectureCoordinate,
+.architectureCoordinate::before,
+.architectureCoordinate::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(61, 60, 53, .2);
+  content: "";
+}
+
+.architectureCoordinate {
+  inset: 10% 3% 14% 2%;
+  transform: rotateX(56deg) rotateZ(-1.5deg);
+  transform-origin: 50% 65%;
+}
+
+.architectureCoordinate::before { inset: 24% 0 auto; height: 1px; border-width: 1px 0 0; }
+.architectureCoordinate::after { inset: 0 auto 0 36%; width: 1px; border-width: 0 0 0 1px; }
+
+.architectureSourceField {
+  position: absolute;
+  top: 17%;
+  left: 2%;
+  width: 40%;
+  height: 63%;
+  border: 1px solid rgba(61, 60, 53, .34);
+  transform: rotateX(4deg) rotateY(-5deg) translateZ(4px);
+  transform-style: preserve-3d;
+}
+
+.architectureSourceField::before {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  color: var(--v2-muted);
+  font-family: var(--font-ibm-plex-mono, monospace);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  content: "source systems / 06";
+}
+
+.architectureSource {
+  position: absolute;
+  display: grid;
+  min-width: 96px;
+  min-height: 68px;
+  align-content: center;
+  gap: 2px;
+  padding: 11px 12px;
+  border: 1px solid rgba(61, 60, 53, .44);
+  background: #eae5da;
+  box-shadow: 8px 10px 0 rgba(102, 95, 79, .09);
+  color: var(--v2-text);
+  transform-style: preserve-3d;
+}
+
+.architectureSource::after {
+  position: absolute;
+  inset: 5px;
+  border-top: 1px solid rgba(174, 83, 53, .58);
+  content: "";
+}
+
+.architectureSource > span,
+.architectureDataLayer span,
+.architectureIntelligence span,
+.architectureActionLayer > span,
+.architectureAnalytics span,
+.architectureFinalStatement span,
+.architectureLoop span {
+  color: var(--v2-accent);
+  font-family: var(--font-ibm-plex-mono, monospace);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.architectureSource b { font-family: var(--font-geologica, Arial, sans-serif); font-size: 18px; letter-spacing: -.04em; }
+.architectureSource small { color: var(--v2-muted); font-size: 9px; line-height: 1.2; }
+.sourceCrm { top: 8%; left: 8%; transform: translateZ(42px) rotate(-4deg); }
+.sourceOneC { top: 29%; right: 7%; transform: translateZ(12px) rotate(3deg); }
+.sourceCalls { top: 54%; left: 14%; transform: translateZ(70px) rotate(2deg); }
+.sourceDocs { right: 3%; bottom: 4%; transform: translateZ(25px) rotate(-3deg); }
+.sourceWeb { top: 5%; right: 18%; transform: translateZ(90px) rotate(4deg); }
+.sourceDb { bottom: 1%; left: 7%; transform: translateZ(48px) rotate(-2deg); }
+
+.architectureDataLayer {
+  position: absolute;
+  right: -5%;
+  bottom: -12%;
+  width: 116%;
+  padding: 10px 0 0;
+  border-top: 2px solid var(--v2-accent);
+}
+.architectureDataLayer p, .architectureActionLayer > p { margin: 5px 0 0; color: var(--v2-muted); font-size: 10px; line-height: 1.35; }
+
+.architectureIntelligence {
+  position: absolute;
+  top: 34%;
+  left: 45%;
+  display: grid;
+  width: 21%;
+  min-height: 155px;
+  align-content: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--v2-text);
+  background: #d4dac7;
+  box-shadow: 10px 10px 0 rgba(102, 95, 79, .1);
+  transform: translateZ(54px) rotateY(-6deg);
+}
+.architectureIntelligence strong, .architectureAnalytics strong { font-family: var(--font-geologica, Arial, sans-serif); font-size: clamp(15px, 1.35vw, 20px); font-weight: 600; letter-spacing: -.04em; line-height: 1.02; }
+.architectureIntelligence i { color: #5a5f50; font-family: var(--font-ibm-plex-mono, monospace); font-size: 8px; font-style: normal; letter-spacing: .06em; text-transform: uppercase; }
+
+.architectureSignal {
+  position: absolute;
+  top: 48%;
+  left: 63%;
+  width: 16%;
+  height: 2px;
+  background: var(--v2-accent);
+}
+.architectureSignal::after { position: absolute; top: -3px; right: 0; width: 7px; height: 7px; border-right: 1px solid var(--v2-accent); border-top: 1px solid var(--v2-accent); transform: rotate(45deg); content: ""; }
+
+.architectureActionLayer {
+  position: absolute;
+  top: 28%;
+  left: 68%;
+  width: 24%;
+  padding: 14px 0 0 15px;
+  border-left: 1px solid rgba(61, 60, 53, .42);
+}
+.architectureActions { display: grid; gap: 6px; margin-top: 16px; }
+.architectureActions b { display: block; padding: 8px 9px; border-bottom: 1px solid rgba(61, 60, 53, .3); background: rgba(235, 230, 220, .58); font-size: 10px; font-weight: 600; }
+
+.architectureAnalytics {
+  position: absolute;
+  right: 3%;
+  bottom: 12%;
+  display: grid;
+  gap: 10px;
+  width: 26%;
+  padding: 15px 0 15px 14px;
+  border-left: 2px solid var(--v2-olive);
+  background: linear-gradient(90deg, rgba(220, 226, 206, .68), transparent);
+}
+.architectureLoop { position: absolute; right: 2%; bottom: 3%; display: flex; align-items: center; gap: 5px; color: var(--v2-olive); font-family: var(--font-geologica, Arial, sans-serif); font-size: 26px; }
+.architectureLoop span { color: var(--v2-muted); }
+
+.architectureFinalStatement {
+  position: absolute;
+  z-index: 4;
+  bottom: clamp(23px, 4vh, 47px);
+  left: 0;
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--font-geologica, Arial, sans-serif);
+  font-size: clamp(14px, 1.55vw, 20px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+
+.architectureReleaseLine { position: absolute; z-index: 4; bottom: -1px; left: 50%; width: 1px; height: 48px; background: var(--v2-accent); }
+.architectureMobileFlow { display: none; }
+
+/* Block 08 — deliberately calm editorial process. */
+.workSection {
+  position: relative;
+  padding: clamp(110px, 12vw, 180px) 0 clamp(118px, 12vw, 176px);
+  background: #e9e5dc;
+}
+.workLayout { display: grid; grid-template-columns: minmax(260px, .62fr) minmax(470px, 1fr); gap: clamp(60px, 9vw, 144px); align-items: start; }
+.workStatement { position: sticky; top: 18vh; max-width: 390px; }
+.workStatement h2 { margin: 15px 0 0; font-family: var(--font-geologica, Arial, sans-serif); font-size: clamp(38px, 3.8vw, 56px); font-weight: 600; letter-spacing: -.055em; line-height: 1.01; text-wrap: balance; }
+.workStatement > p:last-child { max-width: 320px; margin: 20px 0 0; color: var(--v2-muted); font-size: 14px; line-height: 1.53; }
+.workProcess { position: relative; padding-left: clamp(32px, 4vw, 54px); }
+.workProgressLine { position: absolute; top: 2px; bottom: 2px; left: 0; width: 1px; background: rgba(61, 60, 53, .28); }
+.workProgressLine::before { position: absolute; top: 0; left: -1px; width: 3px; height: 24%; background: var(--v2-accent); content: ""; }
+.workTimeline { display: grid; gap: 0; padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--v2-border); }
+.workTimeline li { display: grid; grid-template-columns: 68px 1fr; gap: 18px; padding: clamp(27px, 3.1vw, 44px) 0; border-bottom: 1px solid var(--v2-border); }
+.workTimeline > li > span { color: var(--v2-accent); font-family: var(--font-ibm-plex-mono, monospace); font-size: 11px; font-weight: 600; letter-spacing: .08em; }
+.workTimeline em { color: var(--v2-muted); font-family: var(--font-ibm-plex-mono, monospace); font-size: 9px; font-style: normal; letter-spacing: .09em; text-transform: uppercase; }
+.workTimeline h3 { margin: 12px 0 0; font-family: var(--font-geologica, Arial, sans-serif); font-size: clamp(28px, 2.35vw, 37px); font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+.workTimeline p { max-width: 390px; margin: 11px 0 0; color: var(--v2-muted); font-size: 15px; line-height: 1.5; }
+
+@media (min-width: 769px) and (max-height: 820px) {
+  .architectureIntro { top: 74px; }
+  .architectureIntro h2 { font-size: clamp(35px, 3.5vw, 50px); }
+  .architectureWorld { top: 8%; height: 80%; }
+  .architectureSource { min-width: 82px; min-height: 58px; padding: 8px 9px; }
+  .architectureSource b { font-size: 15px; }
+  .architectureSource small { font-size: 8px; }
+  .architectureIntelligence { min-height: 125px; padding: 12px; }
+  .architectureIntelligence strong, .architectureAnalytics strong { font-size: 14px; }
+  .architectureActionLayer { top: 25%; }
+  .architectureActions { margin-top: 10px; }
+  .architectureActions b { padding: 6px 7px; font-size: 9px; }
+  .architectureAnalytics { bottom: 9%; }
+}
+
+@media (max-width: 768px) {
+  .architectureSection { height: auto; padding: 0; overflow: visible; background: #ded9cf; }
+  .architectureSection::after { left: 24px; height: 38px; }
+  .architectureStage, .architectureContainer { height: auto; min-height: 0; overflow: visible; }
+  .architectureContainer { padding: 76px 0 82px; }
+  .architectureIntro { position: static; width: auto; }
+  .architectureIntro h2 { font-size: clamp(33px, 9.2vw, 43px); line-height: 1.04; }
+  .architectureIntro > p:last-child { margin-top: 15px; font-size: 16px; }
+  .architectureWorld, .architectureFinalStatement, .architectureReleaseLine { display: none; }
+  .architectureMobileFlow { display: block; margin-top: 38px; }
+  .architectureMobileSources { display: grid; grid-template-columns: repeat(2, 1fr); margin-bottom: 28px; border-top: 1px solid var(--v2-border); border-left: 1px solid var(--v2-border); }
+  .architectureMobileSources span { min-height: 49px; display: flex; align-items: center; padding: 10px 12px; border-right: 1px solid var(--v2-border); border-bottom: 1px solid var(--v2-border); color: var(--v2-text); font-family: var(--font-geologica, Arial, sans-serif); font-size: 16px; letter-spacing: -.03em; }
+  .architectureMobileFlow ol { position: relative; display: grid; gap: 0; padding: 0 0 0 31px; margin: 0; list-style: none; }
+  .architectureMobileFlow ol::before { position: absolute; top: 0; bottom: 17px; left: 4px; width: 2px; background: var(--v2-accent); content: ""; }
+  .architectureMobileFlow li { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 10px; padding: 0 0 26px; }
+  .architectureMobileFlow li::before { position: absolute; top: 4px; left: -31px; width: 10px; height: 10px; border: 2px solid var(--v2-accent); border-radius: 50%; background: #ded9cf; content: ""; }
+  .architectureMobileFlow li > span { color: var(--v2-accent); font-family: var(--font-ibm-plex-mono, monospace); font-size: 11px; font-weight: 600; }
+  .architectureMobileFlow h3 { margin: 0; font-family: var(--font-geologica, Arial, sans-serif); font-size: 25px; letter-spacing: -.045em; line-height: 1; }
+  .architectureMobileFlow p { margin: 8px 0 0; color: var(--v2-muted); font-size: 14px; line-height: 1.48; }
+  .architectureMobileFlow li > b { position: absolute; left: -43px; bottom: -2px; color: var(--v2-olive); font-size: 23px; }
+  .workSection { padding: 82px 0 90px; }
+  .workLayout { display: block; }
+  .workStatement { position: static; max-width: none; }
+  .workStatement h2 { font-size: clamp(33px, 9.2vw, 43px); line-height: 1.04; }
+  .workStatement > p:last-child { max-width: 360px; margin-top: 15px; font-size: 15px; }
+  .workProcess { margin-top: 40px; padding-left: 32px; }
+  .workProgressLine { left: 3px; }
+  .workTimeline li { grid-template-columns: 42px 1fr; gap: 11px; padding: 27px 0; }
+  .workTimeline h3 { font-size: 27px; }
+  .workTimeline p { font-size: 15px; }
+}
+
+@media (max-width: 390px) {
+  .architectureMobileSources span { padding-inline: 10px; font-size: 15px; }
+  .architectureMobileFlow ol { padding-left: 28px; }
+  .architectureMobileFlow li { grid-template-columns: 39px 1fr; }
+  .workProcess { padding-left: 27px; }
+  .workTimeline li { grid-template-columns: 38px 1fr; gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 769px) {
+  .architectureSection { height: auto; }
+  .architectureStage { position: relative; min-height: 100svh; }
+  .architectureWorld { visibility: visible; transform: scale(.84); transform-origin: 50% 52%; }
+}
