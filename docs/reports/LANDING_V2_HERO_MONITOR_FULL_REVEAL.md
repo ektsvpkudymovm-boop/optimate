@@ -86,6 +86,6 @@ With `prefers-reduced-motion: reduce` emulated, the Hero stage was normal docume
 ## Git / remote sync
 
 - Branch: `landing-v2-design`.
-- Commit SHA: recorded after the feature commit.
+- Feature commit SHA: `b126feba270f8759cff2f7556858138db8bc961c`.
 - Commit message: `feat(landing-v2): complete hero monitor full reveal`.
-- Push result: recorded after the verified push to `origin landing-v2-design`.
+- Push result: `origin/landing-v2-design` was created and verified to point to the feature commit.
