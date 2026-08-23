@@ -1,0 +1,160 @@
+{
+  "generatedAt": "2026-07-08T12:17:12.681Z",
+  "states": [
+    {
+      "name": "home-desktop-start",
+      "url": "http://localhost:3000/",
+      "scrollY": 0,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "bodyWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 628,
+      "canvasHeight": 736,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "0.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "home-desktop-mid",
+      "url": "http://localhost:3000/",
+      "scrollY": 500,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "bodyWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 628,
+      "canvasHeight": 736,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "1.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "home-desktop-end",
+      "url": "http://localhost:3000/",
+      "scrollY": 1120,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "bodyWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 628,
+      "canvasHeight": 736,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "0.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "home-mobile-start",
+      "url": "http://localhost:3000/",
+      "scrollY": 0,
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "bodyWidth": 390,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 362,
+      "canvasHeight": 320,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "0.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "home-mobile-mid",
+      "url": "http://localhost:3000/",
+      "scrollY": 430,
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "bodyWidth": 390,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 362,
+      "canvasHeight": 320,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "0.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "sequence-lab-desktop-start",
+      "url": "http://localhost:3000/sequence-lab/hero-night",
+      "scrollY": 0,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "bodyWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 628,
+      "canvasHeight": 736,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "0.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    },
+    {
+      "name": "sequence-lab-desktop-mid",
+      "url": "http://localhost:3000/sequence-lab/hero-night",
+      "scrollY": 500,
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "bodyWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "canvasWidth": 628,
+      "canvasHeight": 736,
+      "canvasContext": true,
+      "loadNote": "Frames 100%",
+      "beatB": "1.000",
+      "beatC": "0.000",
+      "beatD": "0.000",
+      "headerText": "OptiMateAI Product LabСистемыВозможностиКейсыПодходРазобрать процессNightAutonomous",
+      "h1": "AI-системыдля бизнеса,который выросиз ручногоуправления",
+      "theme": "dark"
+    }
+  ],
+  "pageLogs": [
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] rebuilding"
+    },
+    {
+      "type": "log",
+      "text": "[Fast Refresh] done in 162ms"
+    },
+    {
+      "type": "log",
+      "text": "[HMR] connected"
+    }
+  ]
+}

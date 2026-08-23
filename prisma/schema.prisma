@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model AdminUser {
+  id                    String                @id @default(cuid())
+  email                 String                @unique
+  passwordHash          String
+  role                  String                @default("MANAGER")
+  mfaEnabled            Boolean               @default(false)
+  mfaSecretEncrypted    String?
+  mfaEnabledAt          DateTime?
+  createdAt             DateTime              @default(now())
+  updatedAt             DateTime              @updatedAt
+  sessions              AdminSession[]
+  mfaChallenges         AdminMfaChallenge[]
+  mfaSetups             AdminMfaSetup[]
+  recoveryCodes         AdminRecoveryCode[]
+  notes                 LeadNote[]
+}
+
+model AdminSession {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime  @default(now())
+}
+
+model AdminMfaSetup {
+  id                     String    @id @default(cuid())
+  userId                 String
+  user                   AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  secretEncrypted        String
+  expiresAt              DateTime
+  createdAt              DateTime  @default(now())
+}
+
+model AdminMfaChallenge {
+  id          String    @id @default(cuid())
+  tokenHash   String    @unique
+  userId      String
+  user        AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt   DateTime
+  attempts    Int       @default(0)
+  consumedAt  DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+model AdminRecoveryCode {
+  id        String    @id @default(cuid())
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash  String
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Lead {
+  id            String      @id @default(cuid())
+  name          String
+  contact       String
+  company       String?
+  task          String
+  budget        String?
+  status        String      @default("NEW")
+  source        String?
+  utmSource     String?
+  utmMedium     String?
+  utmCampaign   String?
+  utmContent    String?
+  utmTerm       String?
+  referrer      String?
+  pageUrl       String?
+  userAgent     String?
+  ipHash        String?
+  consentPd     Boolean     @default(false)
+  consentContact Boolean    @default(false)
+  consentAt     DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  notes         LeadNote[]
+  events        AnalyticsEvent[]
+}
+
+model LeadNote {
+  id        String    @id @default(cuid())
+  leadId    String
+  lead      Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  authorId  String?
+  author    AdminUser? @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  text      String
+  createdAt DateTime  @default(now())
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  type      String
+  leadId    String?
+  lead      Lead?    @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  path      String?
+  label     String?
+  metadata  String?
+  sessionId String?
+  visitorId String?
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+}
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
