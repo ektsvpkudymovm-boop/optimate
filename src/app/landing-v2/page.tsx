@@ -3,9 +3,7 @@ import { HeroSection } from "@/components/landing-v2/hero-section";
 import { HiddenCostSection } from "@/components/landing-v2/hidden-cost-section";
 import { LandingV2Header } from "@/components/landing-v2/landing-v2-header";
 import { CompanyContextSection } from "@/components/landing-v2/company-context-section";
-import { KnowledgeSection } from "@/components/landing-v2/knowledge-section";
-import { CallAnalysisSection } from "@/components/landing-v2/call-analysis-section";
-import { MarketInsightsSection } from "@/components/landing-v2/market-insights-section";
+import { ProductStoryChapter } from "@/components/landing-v2/product-story-chapter";
 import { AutomationArchitectureSection } from "@/components/landing-v2/automation-architecture-section";
 import { HowWeWorkSection } from "@/components/landing-v2/how-we-work-section";
 import { CasesSection } from "@/components/landing-v2/cases-section";
@@ -24,9 +22,7 @@ export default function LandingV2Page() {
         <HeroSection />
         <HiddenCostSection />
         <CompanyContextSection />
-        <KnowledgeSection />
-        <CallAnalysisSection />
-        <MarketInsightsSection />
+        <ProductStoryChapter />
         <AutomationArchitectureSection />
         <HowWeWorkSection />
         <CasesSection />
