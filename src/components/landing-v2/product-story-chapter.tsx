@@ -50,10 +50,10 @@ export function ProductStoryChapter() {
     const media = gsap.matchMedia();
 
     media.add("(min-width: 1025px) and (prefers-reduced-motion: no-preference)", () => {
-      const sources = root.querySelectorAll<HTMLElement>("[data-story-source]");
-      const focus = root.querySelectorAll<HTMLElement>("[data-story-focus]");
-      const actions = root.querySelectorAll<HTMLElement>("[data-story-action]");
-      const phrases = root.querySelectorAll<HTMLElement>("[data-story-phrase]");
+      const sources = Array.from(root.querySelectorAll<HTMLElement>("[data-story-source]"));
+      const focus = Array.from(root.querySelectorAll<HTMLElement>("[data-story-focus]"));
+      const actions = Array.from(root.querySelectorAll<HTMLElement>("[data-story-action]"));
+      const phrases = Array.from(root.querySelectorAll<HTMLElement>("[data-story-phrase]"));
       const getDistance = () => Math.max(0, track.scrollWidth - stage.clientWidth);
 
       const context = gsap.context(() => {
@@ -99,10 +99,10 @@ export function ProductStoryChapter() {
       const market = root.querySelector<HTMLElement>("[aria-labelledby='market-title']");
       const context = gsap.context(() => {
         if (knowledge) {
-          const sources = knowledge.querySelectorAll<HTMLElement>("[data-story-source]");
+          const sources = Array.from(knowledge.querySelectorAll<HTMLElement>("[data-story-source]"));
           const timeline = gsap.timeline({ scrollTrigger: { trigger: knowledge, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
-            .from(knowledge.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
+            .from(Array.from(knowledge.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`)), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
             .from(knowledge.querySelector(classSelector(styles.knowledgeQuestion)), { autoAlpha: 0, y: 14, duration: 0.36, ease: "power2.out" }, "<+=0.12")
             .from(sources, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.08")
             .from(knowledge.querySelector(classSelector(styles.knowledgeAnswer)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.06")
@@ -110,20 +110,20 @@ export function ProductStoryChapter() {
         }
 
         if (conversation) {
-          const focus = conversation.querySelectorAll<HTMLElement>("[data-story-focus]");
-          const actions = conversation.querySelectorAll<HTMLElement>("[data-story-action]");
+          const focus = Array.from(conversation.querySelectorAll<HTMLElement>("[data-story-focus]"));
+          const actions = Array.from(conversation.querySelectorAll<HTMLElement>("[data-story-action]"));
           const timeline = gsap.timeline({ scrollTrigger: { trigger: conversation, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
-            .from(conversation.querySelectorAll(`${classSelector(styles.productIdentity)}, h2, ${classSelector(styles.conversationQuote)}`), { autoAlpha: 0, y: 14, duration: 0.38, stagger: 0.1, ease: "power2.out" })
+            .from(Array.from(conversation.querySelectorAll(`${classSelector(styles.productIdentity)}, h2, ${classSelector(styles.conversationQuote)}`)), { autoAlpha: 0, y: 14, duration: 0.38, stagger: 0.1, ease: "power2.out" })
             .from(focus, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.12")
             .from(actions, { autoAlpha: 0, x: -12, duration: 0.26, stagger: 0.06, ease: "power2.out" }, "<+=0.1");
         }
 
         if (market) {
-          const phrases = market.querySelectorAll<HTMLElement>("[data-story-phrase]");
+          const phrases = Array.from(market.querySelectorAll<HTMLElement>("[data-story-phrase]"));
           const timeline = gsap.timeline({ scrollTrigger: { trigger: market, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
-            .from(market.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
+            .from(Array.from(market.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`)), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
             .from(phrases, { autoAlpha: 0, x: 12, duration: 0.28, stagger: 0.1, ease: "power2.out" }, "<+=0.12")
             .from(market.querySelector(classSelector(styles.marketSignal)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.12")
             .from(market.querySelector(classSelector(styles.marketModeBlock)), { autoAlpha: 0, y: 10, duration: 0.28, ease: "power2.out" }, "<+=0.08");

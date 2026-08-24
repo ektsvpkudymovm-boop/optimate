@@ -31,10 +31,10 @@ export function AutomationArchitectureSection() {
       const intro = root.querySelector<HTMLElement>("[data-architecture-intro]");
       const lead = root.querySelector<HTMLElement>("[data-architecture-lead]");
       const world = root.querySelector<HTMLElement>("[data-architecture-world]");
-      const sources = root.querySelectorAll<HTMLElement>("[data-architecture-source]");
+      const sources = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-source]"));
       const dataLayer = root.querySelector<HTMLElement>("[data-architecture-data]");
       const intelligence = root.querySelector<HTMLElement>("[data-architecture-ai]");
-      const actions = root.querySelectorAll<HTMLElement>("[data-architecture-action]");
+      const actions = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-action]"));
       const actionLayer = root.querySelector<HTMLElement>("[data-architecture-action-layer]");
       const analytics = root.querySelector<HTMLElement>("[data-architecture-analytics]");
       const signal = root.querySelector<HTMLElement>("[data-architecture-signal]");
@@ -110,9 +110,9 @@ export function AutomationArchitectureSection() {
     media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       const intro = root.querySelector<HTMLElement>("[data-architecture-intro]");
       const flow = root.querySelector<HTMLElement>("[data-architecture-mobile-flow]");
-      const sources = root.querySelectorAll<HTMLElement>("[data-architecture-mobile-source]");
+      const sources = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-mobile-source]"));
       const signal = root.querySelector<HTMLElement>("[data-architecture-mobile-signal]");
-      const stages = root.querySelectorAll<HTMLElement>("[data-architecture-mobile-stage]");
+      const stages = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-mobile-stage]"));
       const finalStatement = root.querySelector<HTMLElement>("[data-architecture-mobile-final]");
       if (!intro || !flow || !signal || !finalStatement) return;
 

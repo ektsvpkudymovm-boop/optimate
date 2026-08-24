@@ -19,7 +19,7 @@ export function HowWeWorkSection() {
     const media = gsap.matchMedia();
     media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
       const statement = section.querySelector<HTMLElement>("[data-work-statement]");
-      const steps = section.querySelectorAll<HTMLElement>("[data-work-step]");
+      const steps = Array.from(section.querySelectorAll<HTMLElement>("[data-work-step]"));
       const progress = section.querySelector<HTMLElement>("[data-work-progress]");
       if (!statement || !progress) return;
 

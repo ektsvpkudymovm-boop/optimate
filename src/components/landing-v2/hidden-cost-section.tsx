@@ -51,7 +51,7 @@ export function HiddenCostSection() {
     const media = gsap.matchMedia();
 
     media.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
-      const rows = section.querySelectorAll<HTMLElement>("[data-loss-row]");
+      const rows = Array.from(section.querySelectorAll<HTMLElement>("[data-loss-row]"));
       const context = gsap.context(() => {
       gsap.fromTo(rows, { autoAlpha: 0, x: 24 }, {
         autoAlpha: 1,
@@ -72,8 +72,8 @@ export function HiddenCostSection() {
     });
 
     media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
-      const headerItems = section.querySelectorAll<HTMLElement>(`.${styles.hiddenCostHeader} > *`);
-      const rows = section.querySelectorAll<HTMLElement>("[data-loss-row]");
+      const headerItems = Array.from(section.querySelectorAll<HTMLElement>(`.${styles.hiddenCostHeader} > *`));
+      const rows = Array.from(section.querySelectorAll<HTMLElement>("[data-loss-row]"));
       const context = gsap.context(() => {
         const timeline = gsap.timeline({
           scrollTrigger: { trigger: section, start: "top 74%", toggleActions: "play none none none", once: true },
