@@ -40,15 +40,14 @@ export function AutomationArchitectureSection() {
       const signal = root.querySelector<HTMLElement>("[data-architecture-signal]");
       const loop = root.querySelector<HTMLElement>("[data-architecture-loop]");
       const finalStatement = root.querySelector<HTMLElement>("[data-architecture-final]");
-      const release = root.querySelector<HTMLElement>("[data-architecture-release]");
 
-      if (!intro || !lead || !world || !dataLayer || !intelligence || !actionLayer || !analytics || !signal || !loop || !finalStatement || !release) return;
+      if (!intro || !lead || !world || !dataLayer || !intelligence || !actionLayer || !analytics || !signal || !loop || !finalStatement) return;
 
       let cleanupTimeline = () => undefined;
       const context = gsap.context(() => {
-        gsap.set(world, { autoAlpha: 1, scale: 1.2, transformOrigin: "50% 52%" });
+        gsap.set(world, { autoAlpha: 0, scale: 1.2, clipPath: "inset(0 0 0 18%)", transformOrigin: "50% 52%" });
         gsap.set(sources, { autoAlpha: 0, scale: 1.34, z: 170, transformOrigin: "50% 50%" });
-        gsap.set([dataLayer, intelligence, actionLayer, analytics, loop, finalStatement, release], { autoAlpha: 0, y: 14 });
+        gsap.set([dataLayer, intelligence, actionLayer, analytics, loop, finalStatement], { autoAlpha: 0, y: 14 });
         gsap.set(actions, { autoAlpha: 0, x: -14 });
         gsap.set(signal, { autoAlpha: 0, scaleX: 0, transformOrigin: "0% 50%" });
 
@@ -57,7 +56,9 @@ export function AutomationArchitectureSection() {
         timeline
           .to(intro, { scale: 0.76, yPercent: -58, transformOrigin: "0% 0%", duration: 0.68 }, 0.38)
           .to(lead, { autoAlpha: 0.74, duration: 0.34 }, 0.48)
-          .to(sources, { autoAlpha: 1, scale: 1, z: 0, duration: 0.32, stagger: 0.24 }, 0.76)
+          .to(world, { autoAlpha: 1, duration: 0.2 }, 0.74)
+          .to(sources, { autoAlpha: 1, scale: 1, z: 0, duration: 0.32, stagger: 0.24 }, 0.9)
+          .to(world, { clipPath: "inset(0 0 0 0%)", duration: 0.34 }, 1.88)
           .to(world, { scale: 0.84, yPercent: 6, duration: 0.7 }, 2.06)
           .to(dataLayer, { autoAlpha: 1, y: 0, duration: 0.28 }, 2.45)
           .to(intelligence, { autoAlpha: 1, y: 0, duration: 0.3 }, 2.76)
@@ -66,8 +67,7 @@ export function AutomationArchitectureSection() {
           .to(actions, { autoAlpha: 1, x: 0, duration: 0.22, stagger: 0.1 }, 3.44)
           .to(analytics, { autoAlpha: 1, y: 0, duration: 0.3 }, 3.96)
           .to(loop, { autoAlpha: 1, y: 0, duration: 0.3 }, 4.18)
-          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.22 }, 4.42)
-          .to(release, { autoAlpha: 1, y: 0, duration: 0.18 }, 4.7);
+          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.22 }, 4.42);
 
         let frame = 0;
         const syncProgress = () => {
@@ -105,6 +105,31 @@ export function AutomationArchitectureSection() {
         cleanupTimeline();
         context.revert();
       };
+    });
+
+    media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const intro = root.querySelector<HTMLElement>("[data-architecture-intro]");
+      const flow = root.querySelector<HTMLElement>("[data-architecture-mobile-flow]");
+      const sources = root.querySelectorAll<HTMLElement>("[data-architecture-mobile-source]");
+      const signal = root.querySelector<HTMLElement>("[data-architecture-mobile-signal]");
+      const stages = root.querySelectorAll<HTMLElement>("[data-architecture-mobile-stage]");
+      const finalStatement = root.querySelector<HTMLElement>("[data-architecture-mobile-final]");
+      if (!intro || !flow || !signal || !finalStatement) return;
+
+      const context = gsap.context(() => {
+        gsap.set([...sources, signal, ...stages, finalStatement], { autoAlpha: 0, y: 12 });
+        gsap.set(signal, { scaleY: 0, transformOrigin: "50% 0%" });
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: root, start: "top 70%", end: "bottom 55%", scrub: 0.55, invalidateOnRefresh: true },
+        });
+        timeline
+          .from(intro, { autoAlpha: 0, y: 12, duration: 0.25, ease: "none" })
+          .to(sources, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "none" })
+          .to(signal, { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.22, ease: "none" })
+          .to(stages, { autoAlpha: 1, y: 0, duration: 0.46, stagger: 0.18, ease: "none" })
+          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.25, ease: "none" });
+      }, root);
+      return () => context.revert();
     });
 
     // The preceding horizontal chapter creates its pin spacer after mount.
@@ -182,21 +207,22 @@ export function AutomationArchitectureSection() {
           </div>
 
           <p className={styles.architectureFinalStatement} data-architecture-final><span>Единая система бизнеса</span>Источники → понимание → действие → улучшение</p>
-          <div className={styles.architectureReleaseLine} data-architecture-release aria-hidden="true" />
 
-          <div className={styles.architectureMobileFlow}>
+          <div className={styles.architectureMobileFlow} data-architecture-mobile-flow>
             <div className={styles.architectureMobileSources}>
-              {sourceSystems.map((source) => <span key={source.short}>{source.label}</span>)}
+              {sourceSystems.map((source) => <span key={source.short} data-architecture-mobile-source>{source.label}</span>)}
             </div>
+            <div className={styles.architectureMobileSignal} data-architecture-mobile-signal aria-hidden="true" />
             <ol aria-label="Как работает единая бизнес-система">
               {pipelineSteps.map((step, index) => (
-                <li key={step.number}>
+                <li key={step.number} data-architecture-mobile-stage>
                   <span>{step.number}</span>
                   <div><h3>{step.title}</h3><p>{step.copy}</p></div>
                   {index === pipelineSteps.length - 1 && <b aria-hidden="true">↺</b>}
                 </li>
               ))}
             </ol>
+            <p className={styles.architectureMobileFinal} data-architecture-mobile-final>Источники → понимание → действие → улучшение</p>
           </div>
         </div>
       </div>

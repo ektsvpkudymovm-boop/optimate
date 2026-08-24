@@ -56,6 +56,31 @@ export function HeroSection() {
     return () => context.revert();
   }, []);
 
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const copy = copyRef.current;
+    const visual = visualRef.current;
+    const monitor = monitorRef.current;
+    if (!section || !copy || !visual || !monitor) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const copyItems = Array.from(copy.children);
+      const context = gsap.context(() => {
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: section, start: "top 82%", toggleActions: "play none none none", once: true },
+        });
+        timeline
+          .from(copyItems, { autoAlpha: 0, y: 14, duration: 0.42, stagger: 0.08, ease: "power2.out" })
+          .fromTo(visual, { autoAlpha: 0, y: 22, scale: 0.985 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.52, ease: "power2.out" }, "<+=0.12")
+          .fromTo(monitor, { scale: 0.96 }, { scale: 1, duration: 0.42, ease: "power2.out" }, "<");
+      }, section);
+      return () => context.revert();
+    });
+    return () => media.revert();
+  }, []);
+
   return (
     <section ref={sectionRef} id="hero" className={styles.hero} aria-labelledby="hero-title">
       <div ref={stageRef} className={styles.heroStage}>

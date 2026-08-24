@@ -47,13 +47,12 @@ export function HiddenCostSection() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(min-width: 769px)").matches) return;
-
     gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
 
-    const rows = section.querySelectorAll<HTMLElement>("[data-loss-row]");
-    const context = gsap.context(() => {
+    media.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
+      const rows = section.querySelectorAll<HTMLElement>("[data-loss-row]");
+      const context = gsap.context(() => {
       gsap.fromTo(rows, { autoAlpha: 0, x: 24 }, {
         autoAlpha: 1,
         x: 0,
@@ -68,9 +67,25 @@ export function HiddenCostSection() {
           once: true,
         },
       });
-    }, section);
+      }, section);
+      return () => context.revert();
+    });
 
-    return () => context.revert();
+    media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const headerItems = section.querySelectorAll<HTMLElement>(`.${styles.hiddenCostHeader} > *`);
+      const rows = section.querySelectorAll<HTMLElement>("[data-loss-row]");
+      const context = gsap.context(() => {
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: section, start: "top 74%", toggleActions: "play none none none", once: true },
+        });
+        timeline
+          .from(headerItems, { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
+          .from(rows, { autoAlpha: 0, x: 14, duration: 0.34, stagger: 0.07, ease: "power2.out" }, "<+=0.12");
+      }, section);
+      return () => context.revert();
+    });
+
+    return () => media.revert();
   }, []);
 
   return (

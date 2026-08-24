@@ -166,6 +166,28 @@ export function CompanyContextSection() {
     return () => context.revert();
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add("(max-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      const header = section.querySelector<HTMLElement>(`.${styles.companyContextHeader}`);
+      const unified = section.querySelector<HTMLElement>(`.${styles.companyContextUnifiedContext}`);
+      const context = gsap.context(() => {
+        const timeline = gsap.timeline({
+          scrollTrigger: { trigger: section, start: "top 72%", toggleActions: "play none none none", once: true },
+        });
+        timeline
+          .from(header, { autoAlpha: 0, y: 14, duration: 0.42, ease: "power2.out" })
+          .from(unified, { autoAlpha: 0, y: 18, scale: 0.985, duration: 0.44, ease: "power2.out" }, "<+=0.2");
+      }, section);
+      return () => context.revert();
+    });
+    return () => media.revert();
+  }, []);
+
   const activeSource = companyContextSources.find((source) => source.id === activeSourceId) ??
     companyContextSources[0];
 

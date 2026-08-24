@@ -8,6 +8,7 @@ import { callCapabilities, knowledgeModes, marketModes } from "./landing-v2-data
 import styles from "@/app/landing-v2/landing-v2.module.css";
 
 const join = (...values: Array<string | false | undefined>) => values.filter(Boolean).join(" ");
+const classSelector = (className: string) => `.${className}`;
 
 export function ProductStoryChapter() {
   const rootRef = useRef<HTMLElement | null>(null);
@@ -89,6 +90,45 @@ export function ProductStoryChapter() {
           .to({}, { duration: 0.38 });
       }, root);
 
+      return () => context.revert();
+    });
+
+    media.add("(max-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      const knowledge = root.querySelector<HTMLElement>("[aria-labelledby='knowledge-title']");
+      const conversation = root.querySelector<HTMLElement>("[aria-labelledby='calls-title']");
+      const market = root.querySelector<HTMLElement>("[aria-labelledby='market-title']");
+      const context = gsap.context(() => {
+        if (knowledge) {
+          const sources = knowledge.querySelectorAll<HTMLElement>("[data-story-source]");
+          const timeline = gsap.timeline({ scrollTrigger: { trigger: knowledge, start: "top 74%", toggleActions: "play none none none", once: true } });
+          timeline
+            .from(knowledge.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
+            .from(knowledge.querySelector(classSelector(styles.knowledgeQuestion)), { autoAlpha: 0, y: 14, duration: 0.36, ease: "power2.out" }, "<+=0.12")
+            .from(sources, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.08")
+            .from(knowledge.querySelector(classSelector(styles.knowledgeAnswer)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.06")
+            .from(knowledge.querySelector(classSelector(styles.knowledgeNextAction)), { autoAlpha: 0, x: -10, duration: 0.26, ease: "power2.out" }, "<+=0.06");
+        }
+
+        if (conversation) {
+          const focus = conversation.querySelectorAll<HTMLElement>("[data-story-focus]");
+          const actions = conversation.querySelectorAll<HTMLElement>("[data-story-action]");
+          const timeline = gsap.timeline({ scrollTrigger: { trigger: conversation, start: "top 74%", toggleActions: "play none none none", once: true } });
+          timeline
+            .from(conversation.querySelectorAll(`${classSelector(styles.productIdentity)}, h2, ${classSelector(styles.conversationQuote)}`), { autoAlpha: 0, y: 14, duration: 0.38, stagger: 0.1, ease: "power2.out" })
+            .from(focus, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.12")
+            .from(actions, { autoAlpha: 0, x: -12, duration: 0.26, stagger: 0.06, ease: "power2.out" }, "<+=0.1");
+        }
+
+        if (market) {
+          const phrases = market.querySelectorAll<HTMLElement>("[data-story-phrase]");
+          const timeline = gsap.timeline({ scrollTrigger: { trigger: market, start: "top 74%", toggleActions: "play none none none", once: true } });
+          timeline
+            .from(market.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
+            .from(phrases, { autoAlpha: 0, x: 12, duration: 0.28, stagger: 0.1, ease: "power2.out" }, "<+=0.12")
+            .from(market.querySelector(classSelector(styles.marketSignal)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.12")
+            .from(market.querySelector(classSelector(styles.marketModeBlock)), { autoAlpha: 0, y: 10, duration: 0.28, ease: "power2.out" }, "<+=0.08");
+        }
+      }, root);
       return () => context.revert();
     });
 
