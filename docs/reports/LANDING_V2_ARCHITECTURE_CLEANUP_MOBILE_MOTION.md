@@ -90,5 +90,5 @@
 ## Git и backup
 
 - Backup перед коррекцией: `C:\Users\user\Desktop\ВАЙБКОД\Сайи Optimate\backups\site-before-landing-v2-architecture-cleanup-mobile-motion-20260824-0515.zip`.
-- Commit SHA будет добавлен после создания основного коммита.
+- Основной commit: `8deecb1` — `fix(landing-v2): refine architecture guides and mobile motion`.
 - Push не выполняется согласно правилам проекта.
