@@ -26,10 +26,12 @@
 
 Основной `AGENTS.md` обновлён правилом single-developer workflow: работа напрямую в `main`, без постоянных feature/design/dev веток, без force push и без уничтожения незакоммиченной работы. Откаты выполняются через историю, `git revert` или известный commit SHA.
 
-## Финальная публикация
+## Публикация и очистка веток
 
-Этот отчёт фиксирует состояние до завершения публикации workflow-документации. После создания его commit и успешного push:
+- `main` опубликована без force push: `72c56a1..55dfe80`.
+- Перед удалением ветки проверено: `git log main..landing-v2-design --oneline` не вернул ни одного commit. Единственным отличием `git diff main..landing-v2-design --stat` был этот отчёт, добавленный поверх актуального site state.
+- `landing-v2-design` удалена локально через безопасный `git branch -d landing-v2-design`.
+- `origin/landing-v2-design` удалена через `git push origin --delete landing-v2-design`.
+- `main` настроена на tracking `origin/main`.
 
-- `main == origin/main`;
-- `landing-v2-design` будет удалена локально и на remote только после проверки, что она полностью содержится в `main`;
-- отдельной постоянной рабочей ветки, кроме `main`, не останется.
+После публикации финальной записи отчёта local `main` и `origin/main` повторно сверяются и должны совпадать. Других постоянных рабочих веток не остаётся; legacy `master` не является рабочей веткой и не изменялся.
