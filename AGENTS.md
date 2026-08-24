@@ -1,5 +1,11 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Git workflow
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+This is a single-developer project.
+
+- Work directly on `main`.
+- Do not create feature/design/dev branches unless the user explicitly requests one.
+- Do not use force push.
+- Before significant work, create the project's normal backup if required.
+- After a completed and verified task, create a descriptive commit and push `main`.
+- Use commit history / `git revert` / a known commit SHA for rollback.
+- Never discard uncommitted user work with reset/clean/restore commands.

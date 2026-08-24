@@ -24,7 +24,7 @@
 
 ## Workflow
 
-Основной `AGENTS.md` обновлён правилом single-developer workflow: работа напрямую в `main`, без постоянных feature/design/dev веток, без force push и без уничтожения незакоммиченной работы. Откаты выполняются через историю, `git revert` или известный commit SHA.
+Основной workspace `AGENTS.md` и repository-level `site/AGENTS.md` обновлены правилом single-developer workflow: работа напрямую в `main`, без постоянных feature/design/dev веток, без force push и без уничтожения незакоммиченной работы. Откаты выполняются через историю, `git revert` или известный commit SHA.
 
 ## Публикация и очистка веток
 
