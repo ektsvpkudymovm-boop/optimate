@@ -1853,18 +1853,19 @@
 .knowledgeQuestion { grid-column: 1 / -1; padding: clamp(25px, 3vw, 42px); background: linear-gradient(103deg, rgba(255, 253, 247, .96), rgba(255, 253, 247, .72)), url("/landing-v2/assets/block-04/knowledge-catalog.png") center right / cover; }
 .knowledgeQuestion span, .knowledgeAnswer > span, .knowledgeSourceField > p { display: inline-flex; align-items: center; gap: 8px; color: var(--v2-muted); font-family: var(--font-ibm-plex-mono, monospace); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
 .knowledgeQuestion strong { display: block; max-width: 630px; margin-top: 20px; font-family: var(--font-geologica, Arial, sans-serif); font-size: clamp(31px, 3.1vw, 48px); line-height: 1.04; letter-spacing: -.05em; }
-.knowledgeAnswer { padding: 30px clamp(24px, 3vw, 38px); background: #fffdf7; }
+.knowledgeAnswer { grid-column: 1; grid-row: 2; padding: 30px clamp(24px, 3vw, 38px); background: #fffdf7; }
 .knowledgeAnswer h3 { margin: 15px 0 0; font-size: clamp(25px, 2.1vw, 32px); line-height: 1.04; }
 .knowledgeAnswer > p { max-width: 480px; margin: 12px 0 0; color: var(--v2-muted); font-size: 14px; line-height: 1.52; }
 .knowledgeNextAction { display: grid; gap: 7px; margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--v2-border); }
 .knowledgeNextAction small { color: var(--v2-muted); font-family: var(--font-ibm-plex-mono, monospace); font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
 .knowledgeNextAction b { display: flex; align-items: center; gap: 8px; font-size: 14px; }
-.knowledgeSourceField { padding: 28px 24px; background: #e7e3d7; }
+.knowledgeSourceField { grid-column: 2; grid-row: 2; padding: 28px 24px; background: #e7e3d7; }
 .knowledgeSourceField > p { margin: 0; color: #626359; line-height: 1.4; }
 .knowledgeSourceField > div { display: grid; gap: 11px; margin-top: 27px; }
 .knowledgeSourceField span { position: relative; display: block; width: fit-content; padding: 7px 0 7px 18px; color: #4c4d45; font-family: var(--font-ibm-plex-mono, monospace); font-size: 11px; }
 .knowledgeSourceField span::before { position: absolute; top: 50%; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--v2-accent); content: ""; transform: translateY(-50%); }
 .knowledgeSourceField span::after { position: absolute; top: 50%; left: 7px; width: min(13vw, 166px); height: 1px; background: linear-gradient(90deg, var(--v2-accent), transparent); content: ""; transform: translateY(-50%); }
+.knowledgeConvergence, .marketConvergence { display: none; }
 .knowledgeModeBlock { max-width: 700px; margin: 24px 0 0 auto; }
 .productModeRail { display: flex; gap: 0; margin-top: 10px; overflow-x: auto; border-bottom: 1px solid var(--v2-border); }
 .productModeRail button { flex: 0 0 auto; min-height: 42px; padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--v2-muted); cursor: pointer; font-size: 12px; text-align: left; transition: color .2s ease, border-color .2s ease; }
@@ -1946,8 +1947,12 @@
   .productStoryScene { padding: 78px 16px 64px; }
   .productSceneNumber { top: 24px; left: 16px; }
   .knowledgeStatement h2, .conversationIntro h2, .marketIntro h2 { font-size: clamp(38px, 11vw, 50px); }
-  .knowledgeProduct { display: block; margin-top: 34px; }
+  .knowledgeProduct { display: flex; flex-direction: column; margin-top: 34px; }
   .knowledgeQuestion, .knowledgeAnswer, .knowledgeSourceField { padding: 24px 18px; }
+  .knowledgeQuestion { order: 0; }
+  .knowledgeSourceField { order: 1; }
+  .knowledgeConvergence { order: 2; display: block; width: 2px; height: 26px; margin: -1px auto; background: var(--v2-accent); }
+  .knowledgeAnswer { order: 3; }
   .knowledgeQuestion strong { font-size: clamp(29px, 9vw, 38px); }
   .knowledgeSourceField > div { grid-template-columns: 1fr 1fr; }
   .knowledgeSourceField span::after { width: min(22vw, 90px); }
@@ -1966,7 +1971,8 @@
   .marketPhrases p { font-size: clamp(21px, 7vw, 28px); }
   .marketPhrases p:nth-child(2) { right: 0; }
   .marketPhrases p:nth-child(3) { right: 6%; }
-  .marketSignal { margin-top: 28px; }
+  .marketConvergence { display: block; width: 2px; height: 26px; margin: -9px 0 0 20px; background: #cb6c4a; }
+  .marketSignal { margin-top: 20px; }
   .marketModeBlock { margin-top: 28px; }
 }
 
@@ -2256,17 +2262,6 @@
   overflow: hidden;
 }
 
-.architectureSection::after {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  bottom: 0;
-  width: 1px;
-  height: 10vh;
-  background: var(--v2-accent);
-  content: "";
-}
-
 .architectureContainer {
   position: relative;
   height: 100svh;
@@ -2313,24 +2308,6 @@
   transform-style: preserve-3d;
   visibility: hidden;
 }
-
-.architectureCoordinate,
-.architectureCoordinate::before,
-.architectureCoordinate::after {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(61, 60, 53, .1);
-  content: "";
-}
-
-.architectureCoordinate {
-  inset: 10% 3% 14% 2%;
-  transform: rotateX(56deg) rotateZ(-1.5deg);
-  transform-origin: 50% 65%;
-}
-
-.architectureCoordinate::before,
-.architectureCoordinate::after { display: none; }
 
 .architectureSourceField {
   position: absolute;
@@ -2432,8 +2409,8 @@
 .architectureSignal {
   position: absolute;
   top: 48%;
-  left: 63%;
-  width: 16%;
+  left: 66%;
+  width: 2.6%;
   height: 2px;
   background: var(--v2-accent);
 }
@@ -2519,7 +2496,6 @@
 
 @media (max-width: 768px) {
   .architectureSection { height: auto; padding: 0; overflow: visible; background: #ded9cf; }
-  .architectureSection::after { left: 24px; height: 38px; }
   .architectureStage, .architectureContainer { height: auto; min-height: 0; overflow: visible; }
   .architectureContainer { padding: 76px 0 82px; }
   .architectureIntro { position: static; width: auto; }
@@ -2531,9 +2507,11 @@
   .architectureMobileSources span { min-height: 49px; display: flex; align-items: center; padding: 10px 12px; border-right: 1px solid var(--v2-border); border-bottom: 1px solid var(--v2-border); color: var(--v2-text); font-family: var(--font-geologica, Arial, sans-serif); font-size: 16px; letter-spacing: -.03em; }
   .architectureMobileSignal { width: 2px; height: 28px; margin: -18px auto 9px; background: var(--v2-accent); }
   .architectureMobileFlow ol { position: relative; display: grid; gap: 0; padding: 0 0 0 31px; margin: 0; list-style: none; }
-  .architectureMobileFlow ol::before { position: absolute; top: 0; bottom: 17px; left: 4px; width: 2px; background: var(--v2-accent); content: ""; }
+  .architectureMobileProgress { position: absolute; z-index: 0; top: 0; bottom: 17px; left: 4px; width: 2px; background: var(--v2-accent); }
   .architectureMobileFlow li { position: relative; display: grid; grid-template-columns: 46px 1fr; gap: 10px; padding: 0 0 26px; }
   .architectureMobileFlow li::before { position: absolute; top: 4px; left: -31px; width: 10px; height: 10px; border: 2px solid var(--v2-accent); border-radius: 50%; background: #ded9cf; content: ""; }
+  .architectureMobileFlow li[data-active="true"]::before { background: var(--v2-accent); }
+  .architectureMobileFlow li[data-active="true"] h3 { color: var(--v2-accent); }
   .architectureMobileFlow li > span { color: var(--v2-accent); font-family: var(--font-ibm-plex-mono, monospace); font-size: 11px; font-weight: 600; }
   .architectureMobileFlow h3 { margin: 0; font-family: var(--font-geologica, Arial, sans-serif); font-size: 25px; letter-spacing: -.045em; line-height: 1; }
   .architectureMobileFlow p { margin: 8px 0 0; color: var(--v2-muted); font-size: 14px; line-height: 1.48; }

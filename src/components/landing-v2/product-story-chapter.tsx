@@ -100,32 +100,38 @@ export function ProductStoryChapter() {
       const context = gsap.context(() => {
         if (knowledge) {
           const sources = Array.from(knowledge.querySelectorAll<HTMLElement>("[data-story-source]"));
+          const convergence = knowledge.querySelector<HTMLElement>("[data-story-convergence]");
           const timeline = gsap.timeline({ scrollTrigger: { trigger: knowledge, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
             .from(Array.from(knowledge.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`)), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
-            .from(knowledge.querySelector(classSelector(styles.knowledgeQuestion)), { autoAlpha: 0, y: 14, duration: 0.36, ease: "power2.out" }, "<+=0.12")
-            .from(sources, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.08")
-            .from(knowledge.querySelector(classSelector(styles.knowledgeAnswer)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.06")
+            .from(knowledge.querySelector(classSelector(styles.knowledgeQuestion)), { autoAlpha: 0, y: 16, scale: 0.98, duration: 0.36, ease: "power2.out" }, "<+=0.12")
+            .from(sources, { autoAlpha: 0, x: -16, duration: 0.28, stagger: 0.08, ease: "power2.out" }, "<+=0.1")
+            .from(convergence, { autoAlpha: 0, scaleY: 0, transformOrigin: "50% 0%", duration: 0.2, ease: "power2.out" }, ">-=0.04")
+            .from(knowledge.querySelector(classSelector(styles.knowledgeAnswer)), { autoAlpha: 0, y: 16, scale: 0.985, duration: 0.36, ease: "power2.out" }, "<+=0.02")
             .from(knowledge.querySelector(classSelector(styles.knowledgeNextAction)), { autoAlpha: 0, x: -10, duration: 0.26, ease: "power2.out" }, "<+=0.06");
         }
 
         if (conversation) {
           const focus = Array.from(conversation.querySelectorAll<HTMLElement>("[data-story-focus]"));
           const actions = Array.from(conversation.querySelectorAll<HTMLElement>("[data-story-action]"));
+          const quote = conversation.querySelector<HTMLElement>("[data-story-quote]");
           const timeline = gsap.timeline({ scrollTrigger: { trigger: conversation, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
-            .from(Array.from(conversation.querySelectorAll(`${classSelector(styles.productIdentity)}, h2, ${classSelector(styles.conversationQuote)}`)), { autoAlpha: 0, y: 14, duration: 0.38, stagger: 0.1, ease: "power2.out" })
-            .from(focus, { autoAlpha: 0, y: 10, duration: 0.26, stagger: 0.07, ease: "power2.out" }, "<+=0.12")
-            .from(actions, { autoAlpha: 0, x: -12, duration: 0.26, stagger: 0.06, ease: "power2.out" }, "<+=0.1");
+            .from(Array.from(conversation.querySelectorAll(`${classSelector(styles.productIdentity)}, h2, ${classSelector(styles.conversationQuote)}`)), { autoAlpha: 0, y: 16, duration: 0.38, stagger: 0.1, ease: "power2.out" })
+            .to(quote, { scale: 0.94, y: -8, transformOrigin: "0% 50%", duration: 0.26, ease: "power2.out" }, ">-=0.02")
+            .from(focus, { autoAlpha: 0, x: 18, duration: 0.28, stagger: 0.08, ease: "power2.out" }, "<")
+            .from(actions, { autoAlpha: 0, x: -16, duration: 0.28, stagger: 0.07, ease: "power2.out" }, "<+=0.1");
         }
 
         if (market) {
           const phrases = Array.from(market.querySelectorAll<HTMLElement>("[data-story-phrase]"));
+          const convergence = market.querySelector<HTMLElement>("[data-story-convergence]");
           const timeline = gsap.timeline({ scrollTrigger: { trigger: market, start: "top 74%", toggleActions: "play none none none", once: true } });
           timeline
             .from(Array.from(market.querySelectorAll(`${classSelector(styles.productIdentity)}, h2`)), { autoAlpha: 0, y: 12, duration: 0.36, stagger: 0.08, ease: "power2.out" })
-            .from(phrases, { autoAlpha: 0, x: 12, duration: 0.28, stagger: 0.1, ease: "power2.out" }, "<+=0.12")
-            .from(market.querySelector(classSelector(styles.marketSignal)), { autoAlpha: 0, y: 12, duration: 0.34, ease: "power2.out" }, "<+=0.12")
+            .from(phrases, { autoAlpha: 0, x: 18, duration: 0.3, stagger: 0.1, ease: "power2.out" }, "<+=0.12")
+            .from(convergence, { autoAlpha: 0, scaleY: 0, transformOrigin: "50% 0%", duration: 0.22, ease: "power2.out" }, ">-=0.04")
+            .from(market.querySelector(classSelector(styles.marketSignal)), { autoAlpha: 0, y: 16, scale: 0.98, duration: 0.36, ease: "power2.out" }, "<+=0.02")
             .from(market.querySelector(classSelector(styles.marketModeBlock)), { autoAlpha: 0, y: 10, duration: 0.28, ease: "power2.out" }, "<+=0.08");
         }
       }, root);
@@ -184,12 +190,6 @@ function KnowledgeScene() {
           <span><Search size={16} /> Вопрос сотрудника</span>
           <strong>Какой аналог предложить клиенту вместо X?</strong>
         </div>
-        <div className={styles.knowledgeAnswer}>
-          <span><Check size={15} /> Объяснимый ответ</span>
-          <h3>Есть несколько подходящих аналогов</h3>
-          <p>Система сравнивает назначение, характеристики и условия продажи — затем даёт менеджеру объяснимый вариант ответа.</p>
-          <div className={styles.knowledgeNextAction}><small>Следующее действие</small><b>Подготовить предложение <ArrowRight size={15} /></b></div>
-        </div>
         <div className={styles.knowledgeSourceField}>
           <p><Database size={14} /> Источники сходятся к ответу</p>
           <div>
@@ -197,6 +197,13 @@ function KnowledgeScene() {
               <span key={source} data-story-source style={{ "--source-index": index } as CSSProperties}>{source}</span>
             ))}
           </div>
+        </div>
+        <div className={styles.knowledgeConvergence} data-story-convergence aria-hidden="true" />
+        <div className={styles.knowledgeAnswer}>
+          <span><Check size={15} /> Объяснимый ответ</span>
+          <h3>Есть несколько подходящих аналогов</h3>
+          <p>Система сравнивает назначение, характеристики и условия продажи — затем даёт менеджеру объяснимый вариант ответа.</p>
+          <div className={styles.knowledgeNextAction}><small>Следующее действие</small><b>Подготовить предложение <ArrowRight size={15} /></b></div>
         </div>
       </div>
 
@@ -224,7 +231,7 @@ function ConversationScene() {
           <p className={styles.productIdentity}>Анализ разговоров</p>
           <h2 id="calls-title">Из разговора система достаёт то, что важно бизнесу.</h2>
         </div>
-        <blockquote className={styles.conversationQuote}>«Нужна похожая позиция, но в другом исполнении.»</blockquote>
+        <blockquote className={styles.conversationQuote} data-story-quote>«Нужна похожая позиция, но в другом исполнении.»</blockquote>
         <div className={styles.conversationFocus}>
           <p>Разговор <span>12:41</span></p>
           <div>
@@ -263,6 +270,7 @@ function MarketScene() {
         <div className={styles.marketPhrases} aria-label="Повторяющиеся клиентские формулировки">
           {phrases.map((phrase) => <p key={phrase} data-story-phrase>«{phrase}»</p>)}
         </div>
+        <div className={styles.marketConvergence} data-story-convergence aria-hidden="true" />
         <div className={styles.marketSignal}>
           <span>Повторяющийся сигнал</span>
           <h3>{mode.title}</h3>

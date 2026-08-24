@@ -56,18 +56,19 @@ export function AutomationArchitectureSection() {
         timeline
           .to(intro, { scale: 0.76, yPercent: -58, transformOrigin: "0% 0%", duration: 0.68 }, 0.38)
           .to(lead, { autoAlpha: 0.74, duration: 0.34 }, 0.48)
-          .to(world, { autoAlpha: 1, duration: 0.2 }, 0.74)
-          .to(sources, { autoAlpha: 1, scale: 1, z: 0, duration: 0.32, stagger: 0.24 }, 0.9)
-          .to(world, { clipPath: "inset(0 0 0 0%)", duration: 0.34 }, 1.88)
-          .to(world, { scale: 0.84, yPercent: 6, duration: 0.7 }, 2.06)
-          .to(dataLayer, { autoAlpha: 1, y: 0, duration: 0.28 }, 2.45)
-          .to(intelligence, { autoAlpha: 1, y: 0, duration: 0.3 }, 2.76)
-          .to(signal, { autoAlpha: 1, scaleX: 1, duration: 0.46 }, 2.95)
-          .to(actionLayer, { autoAlpha: 1, y: 0, duration: 0.24 }, 3.25)
-          .to(actions, { autoAlpha: 1, x: 0, duration: 0.22, stagger: 0.1 }, 3.44)
-          .to(analytics, { autoAlpha: 1, y: 0, duration: 0.3 }, 3.96)
-          .to(loop, { autoAlpha: 1, y: 0, duration: 0.3 }, 4.18)
-          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.22 }, 4.42);
+          // The headline must clear the field before any architecture geometry enters.
+          .to(world, { autoAlpha: 1, duration: 0.2 }, 1.14)
+          .to(sources, { autoAlpha: 1, scale: 1, z: 0, duration: 0.32, stagger: 0.24 }, 1.3)
+          .to(world, { clipPath: "inset(0 0 0 0%)", duration: 0.34 }, 2.28)
+          .to(world, { scale: 0.84, yPercent: 6, duration: 0.7 }, 2.46)
+          .to(dataLayer, { autoAlpha: 1, y: 0, duration: 0.28 }, 2.85)
+          .to(intelligence, { autoAlpha: 1, y: 0, duration: 0.3 }, 3.16)
+          .to(signal, { autoAlpha: 1, scaleX: 1, duration: 0.46 }, 3.35)
+          .to(actionLayer, { autoAlpha: 1, y: 0, duration: 0.24 }, 3.65)
+          .to(actions, { autoAlpha: 1, x: 0, duration: 0.22, stagger: 0.1 }, 3.84)
+          .to(analytics, { autoAlpha: 1, y: 0, duration: 0.3 }, 4.36)
+          .to(loop, { autoAlpha: 1, y: 0, duration: 0.3 }, 4.58)
+          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.22 }, 4.82);
 
         let frame = 0;
         const syncProgress = () => {
@@ -112,22 +113,27 @@ export function AutomationArchitectureSection() {
       const flow = root.querySelector<HTMLElement>("[data-architecture-mobile-flow]");
       const sources = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-mobile-source]"));
       const signal = root.querySelector<HTMLElement>("[data-architecture-mobile-signal]");
+      const progress = root.querySelector<HTMLElement>("[data-architecture-mobile-progress]");
       const stages = Array.from(root.querySelectorAll<HTMLElement>("[data-architecture-mobile-stage]"));
       const finalStatement = root.querySelector<HTMLElement>("[data-architecture-mobile-final]");
-      if (!intro || !flow || !signal || !finalStatement) return;
+      if (!intro || !flow || !signal || !progress || !finalStatement) return;
 
       const context = gsap.context(() => {
-        gsap.set([...sources, signal, ...stages, finalStatement], { autoAlpha: 0, y: 12 });
-        gsap.set(signal, { scaleY: 0, transformOrigin: "50% 0%" });
+        gsap.set([...sources, signal, progress, ...stages, finalStatement], { autoAlpha: 0, y: 12 });
+        gsap.set([signal, progress], { scaleY: 0, transformOrigin: "50% 0%" });
         const timeline = gsap.timeline({
-          scrollTrigger: { trigger: root, start: "top 70%", end: "bottom 55%", scrub: 0.55, invalidateOnRefresh: true },
+          scrollTrigger: { trigger: root, start: "top 72%", toggleActions: "play none none none", once: true },
         });
         timeline
-          .from(intro, { autoAlpha: 0, y: 12, duration: 0.25, ease: "none" })
-          .to(sources, { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "none" })
-          .to(signal, { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.22, ease: "none" })
-          .to(stages, { autoAlpha: 1, y: 0, duration: 0.46, stagger: 0.18, ease: "none" })
-          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.25, ease: "none" });
+          .from(intro, { autoAlpha: 0, y: 12, duration: 0.3, ease: "power2.out" })
+          .to(sources, { autoAlpha: 1, y: 0, duration: 0.38, stagger: 0.08, ease: "power2.out" }, "<+=0.08")
+          .to(signal, { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.22, ease: "power2.out" }, ">-=0.02")
+          .to(progress, { autoAlpha: 1, y: 0, scaleY: 1, duration: 1.24, ease: "power2.out" }, "<")
+          .to(stages[0], { autoAlpha: 1, y: 0, duration: 0.24, ease: "power2.out", attr: { "data-active": "true" } }, ">-=0.98")
+          .to(stages[1], { autoAlpha: 1, y: 0, duration: 0.24, ease: "power2.out", attr: { "data-active": "true" } }, ">+=0.1")
+          .to(stages[2], { autoAlpha: 1, y: 0, duration: 0.24, ease: "power2.out", attr: { "data-active": "true" } }, ">+=0.1")
+          .to(stages[3], { autoAlpha: 1, y: 0, duration: 0.24, ease: "power2.out", attr: { "data-active": "true" } }, ">+=0.1")
+          .to(finalStatement, { autoAlpha: 1, y: 0, duration: 0.28, ease: "power2.out" }, ">+=0.12");
       }, root);
       return () => context.revert();
     });
@@ -167,7 +173,6 @@ export function AutomationArchitectureSection() {
           </header>
 
           <div className={styles.architectureWorld} data-architecture-world aria-hidden="true">
-            <div className={styles.architectureCoordinate} />
             <div className={styles.architectureSourceField}>
               {sourceSystems.map((source) => (
                 <div key={source.short} className={join(styles.architectureSource, styles[source.className])} data-architecture-source>
@@ -214,6 +219,7 @@ export function AutomationArchitectureSection() {
             </div>
             <div className={styles.architectureMobileSignal} data-architecture-mobile-signal aria-hidden="true" />
             <ol aria-label="Как работает единая бизнес-система">
+              <span className={styles.architectureMobileProgress} data-architecture-mobile-progress aria-hidden="true" />
               {pipelineSteps.map((step, index) => (
                 <li key={step.number} data-architecture-mobile-stage>
                   <span>{step.number}</span>
