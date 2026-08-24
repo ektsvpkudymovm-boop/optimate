@@ -92,5 +92,5 @@
 
 - Backup перед коррекцией: `C:\Users\user\Desktop\ВАЙБКОД\Сайи Optimate\backups\site-before-landing-v2-architecture-cleanup-mobile-motion-20260824-0515.zip`.
 - Основной commit: `8deecb1` — `fix(landing-v2): refine architecture guides and mobile motion`.
-- Follow-up commit с нормализацией GSAP targets будет добавлен после финальной проверки.
+- Follow-up commit: `32b8b56` — `fix(landing-v2): normalize GSAP target collections`.
 - Push не выполняется согласно правилам проекта.
